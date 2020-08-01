@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Tokenizer {
-    private HashMap<String, ArrayList<Integer>> invertedIndex;
-    private ArrayList<File> files;
+    private HashMap<String, ArrayList<Integer>> invertedIndex = new HashMap<>();
+    private ArrayList<File> files = new ArrayList<>();
     private String folderPath;
     
 
