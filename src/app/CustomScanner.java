@@ -8,25 +8,23 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class CustomScanner {
-    private String filePath;
+    private File file;
 
-    public CustomScanner(String filePath) {
-        this.filePath = filePath;
+    public CustomScanner(File file) {
+        this.file = file;
     }
 
     public HashSet<String> scan() {
-        HashSet<String> result = new HashSet();
-        File file = new File(filePath);
-        Scanner sc = null;
-
+        HashSet<String> result = new HashSet<String>();
         try {
-            sc = new Scanner(file);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()){
+                String currentToken = sc.next();
+                result.add(currentToken);
+            }
+            sc.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        while (sc.hasNext()){
-            String currentToken = sc.next();
-            result.add(currentToken);
         }
         return result;
     }
