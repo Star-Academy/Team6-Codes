@@ -14,29 +14,23 @@ public class Tokenizer {
 
     public Tokenizer(String folderPath) {
         this.folderPath = folderPath;
-        initFilePaths(folderPath);
+        initFilePaths();
     }
 
-    public void initFilePaths(String folderPath){
-
+    public void initFilePaths(){
         File folder = new File(folderPath);
-
         File[] listOfFiles = folder.listFiles();
-
-        for (int i = 0; i < listOfFiles.length; i++) {
+        for (int i = 0; i < listOfFiles.length; i++) 
             if (listOfFiles[i].isFile()) 
                 files.add(listOfFiles[i]);
-            else if (listOfFiles[i].isDirectory())
-                initFilePaths(listOfFiles[i]);
-        }
     }
 
     public void tokenize(){
         HashSet<String> tokens;
-        for (int i = 0; i < filePaths.size(); i++) {
-            CustomScanner sc = new CustomScanner(filePaths.get(i));
+        for (File file : files) {
+            CustomScanner sc = new CustomScanner(file);
             tokens = sc.scan();
-            init(tokens , );
+            init(tokens , Integer.valueOf(file.getName()));
         }
     }
 
