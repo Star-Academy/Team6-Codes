@@ -10,7 +10,7 @@ public class App {
         Tokenizer tokenizer = new Tokenizer(folderPath);
         tokenizer.tokenize();
         String queString = scanner.nextLine();
-        Query query = new Query(queString, tokenizer.getInvertedIndex());
+        Query query = new Query(queString.toLowerCase(), tokenizer.getInvertedIndex());
         HashSet<Integer> docIndex = query.process();
         for (Integer integer : docIndex) {
             System.out.println(integer);

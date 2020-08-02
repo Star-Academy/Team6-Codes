@@ -46,7 +46,7 @@ public class Query {
 
     private HashSet<Integer> typeAnd(ArrayList<String> queries) {
         if (queries.size() == 0)
-            return new HashSet<>();
+            return new HashSet<>(); 
 
         HashSet<Integer> res = new HashSet<>(invertedIndex.get(queries.get(0)));
 

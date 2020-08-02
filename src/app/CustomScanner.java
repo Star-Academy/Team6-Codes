@@ -18,7 +18,7 @@ public class CustomScanner {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()){
                 String currentToken = sc.next();
-                result.add(currentToken);
+                result.add(currentToken.toLowerCase());
             }
             sc.close();
         } catch (FileNotFoundException e) {
