@@ -42,9 +42,4 @@ public class Tokenizer {
             this.invertedIndex.get(token).add(docId);
         }
     }
-
-    public HashSet<Integer> query(String word) {
-        return invertedIndex.get(word);
-    }
-
 }

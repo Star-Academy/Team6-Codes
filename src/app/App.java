@@ -12,9 +12,8 @@ public class App {
         String queString = scanner.nextLine();
         Query query = new Query(queString.toLowerCase(), tokenizer.getInvertedIndex());
         HashSet<Integer> docIndex = query.process();
-        for (Integer integer : docIndex) {
+        for (Integer integer : docIndex)
             System.out.println(integer);
-        }
         scanner.close();
     }
 }
