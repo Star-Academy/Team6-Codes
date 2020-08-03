@@ -11,10 +11,11 @@ public class QueryType {
         andType = new ArrayList<>();
         orType = new ArrayList<>();
         delType = new ArrayList<>();
-        split(query);
+        splitQuery(query);
     }
 
-    private void split(String query) {
+    // split query words to three types of query
+    private void splitQuery(String query) {
         for (String queryWord : query.split(" ")) {
             switch (queryWord.charAt(0)) {
             case '+':

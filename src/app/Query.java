@@ -15,6 +15,12 @@ public class Query {
         this.invertedIndex = invertedIndex;
     }
 
+    /*
+     * return the response of query first it create an object of QueryTypes class
+     * that split query words to three types. then uses this object's arraylist of
+     * query words to make the response in res HashSet
+     */
+
     public HashSet<Integer> process() {
         res = new HashSet<>();
         QueryType queryType = new QueryType(query);
@@ -24,11 +30,13 @@ public class Query {
         return res;
     }
 
+    // these three functions return response of every query type
+
     private void typeAnd(ArrayList<String> queries) {
         if (queries.size() == 0)
             return;
         res.addAll(invertedIndex.get(queries.get(0)));
-        for (int i = 1; i < queries.size(); i++) 
+        for (int i = 1; i < queries.size(); i++)
             res.retainAll(invertedIndex.get(queries.get(i)));
     }
 
