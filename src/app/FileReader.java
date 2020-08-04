@@ -5,12 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class CustomScanner {
+public class FileReader {
     private File file;
 
-    public CustomScanner(File file) {
+    public FileReader(File file) {
         this.file = file;
     }
+
+    // scan the file and add return tokens in hashset
 
     public HashSet<String> scan() {
         HashSet<String> result = new HashSet<String>();
