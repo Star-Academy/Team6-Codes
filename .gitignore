@@ -40,9 +40,9 @@ bin/
 out/
 server/
 .jqwik-database
-
+data/
 jdtls/
-
+test-data/
 !java-extension/.mvn/wrapper/maven-wrapper.jar
 
 out

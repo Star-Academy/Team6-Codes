@@ -13,7 +13,6 @@ public class FileReader {
     }
 
     // scan the file and add return tokens in hashset
-
     public HashSet<String> scan() {
         HashSet<String> result = new HashSet<String>();
         try {
