@@ -13,7 +13,7 @@ import app.FileReader;
 
 public class FileReaderTest {
 
-    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1";
+    private String folderPath = "C:\\Users\\Mohammad hossein\\Desktop\\codecovrage\\src\\test\\data\\1";
     private FileReader fileReader;
 
     private FileReader fileReaderForInvalidAddress;
@@ -40,7 +40,6 @@ public class FileReaderTest {
     @Test
     public void scanInvalidAddress() {
         Assert.assertEquals(0, fileReaderForInvalidAddress.scan().size());
-
     }
 
 }

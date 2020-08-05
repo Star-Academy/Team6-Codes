@@ -14,18 +14,17 @@ import app.Tokenizer;
 public class QueryTest {
     private Query query;
     private HashMap<String, HashSet<Integer>> invertedIndex;
-    private String folderPath = "\\src\\test\\test-data";
+    private String folderPath = "C:\\Users\\Mohammad hossein\\Desktop\\codecovrage\\src\\test\\data";
 
     @Before
     public void setInvertedIndex() {
         System.out.println(new File(folderPath).getAbsolutePath());
         Tokenizer tokenizer = new Tokenizer(folderPath);
-
         invertedIndex = tokenizer.getInvertedIndex();
     }
 
     @Test
-    public void testQuery() {
+    public void testQuery1() {
         String queryStr = "+slm -mahdi mohamadhosein";
         query = new Query(queryStr, invertedIndex);
         HashSet<Integer> result = query.process();
@@ -33,4 +32,5 @@ public class QueryTest {
         expectedResult.add(3);
         Assert.assertEquals(expectedResult, result);
     }
+
 }
