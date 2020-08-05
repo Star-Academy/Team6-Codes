@@ -1,10 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.net.URL;
 import java.util.HashSet;
 
 import org.junit.Assert;
@@ -15,13 +13,14 @@ import app.FileReader;
 
 public class FileReaderTest {
 
+    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1";
     private FileReader fileReader;
 
     private FileReader fileReaderForInvalidAddress;
 
     @Before
     public void initFileReaderClass() {
-        File file = new File("/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1");
+        File file = new File(folderPath);
         fileReader = new FileReader(file);
 
         File fileInvalidAddress = new File("address alaki");
