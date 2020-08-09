@@ -20,12 +20,11 @@ public class QueryTest {
     public void setInvertedIndex() {
         System.out.println(new File(folderPath).getAbsolutePath());
         Tokenizer tokenizer = new Tokenizer(folderPath);
-
         invertedIndex = tokenizer.getInvertedIndex();
     }
 
     @Test
-    public void testQuery() {
+    public void testQuery1() {
         String queryStr = "+slm -mahdi mohamadhosein";
         query = new Query(queryStr, invertedIndex);
         HashSet<Integer> result = query.process();
@@ -33,4 +32,5 @@ public class QueryTest {
         expectedResult.add(3);
         Assert.assertEquals(expectedResult, result);
     }
+
 }

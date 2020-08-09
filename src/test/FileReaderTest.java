@@ -40,7 +40,6 @@ public class FileReaderTest {
     @Test
     public void scanInvalidAddress() {
         Assert.assertEquals(0, fileReaderForInvalidAddress.scan().size());
-
     }
 
 }
