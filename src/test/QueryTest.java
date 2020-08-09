@@ -14,7 +14,7 @@ import app.Tokenizer;
 public class QueryTest {
     private Query query;
     private HashMap<String, HashSet<Integer>> invertedIndex;
-    private String folderPath = "\\src\\test\\test-data";
+    private String folderPath = "home/mahdi/download\\src\\test\\test-data";
 
     @Before
     public void setInvertedIndex() {

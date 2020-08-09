@@ -7,7 +7,7 @@ import app.Tokenizer;
 
 public class TokenizerTest {
     private Tokenizer tokenizer;
-    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1";
+    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/app.test/app.test-data/1";
 
     @Before
     public void init() {
@@ -16,7 +16,7 @@ public class TokenizerTest {
 
     @Test
     public void addDocIdToTokensTest() {
-        
+
     }
 
 }
