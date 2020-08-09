@@ -14,32 +14,46 @@ public class AppTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-
+    private ByteArrayInputStream inputContent;
+    private StringBuilder inputData = new StringBuilder();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
     @Before
-    public void init(){
+    public void init() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
+
     @After
-    public void after(){
+    public void after() {
         System.setOut(originalOut);
         System.setErr(originalErr);
     }
+
     @Test
     public void mainTest() throws IOException {
 
-        App.initDocs("C:\\Users\\Mohammad hossein\\Desktop\\codecovrage\\src\\test\\data");
+        App.initDocs("/home/mahdi/Documents/code-star/Team-6/src/test/test-data");
         App.search("+slm +haj");
 
-
-
         String newLine = System.getProperty("line.separator");
-        assertEquals("1" +newLine+
-                "2" + newLine+
-                "3"+newLine, outContent.toString());
+        assertEquals("1" + newLine +
+                "2" + newLine +
+                "3" + newLine, outContent.toString());
+
+    }
+
+    @Test
+    public void testStart() {
+        inputData.append("/home/mahdi/Documents/code-star/Team-6/src/test/test-data").append(System.getProperty("line.separator")).append("+slm +haj");
+        inputContent = new ByteArrayInputStream(inputData.toString().getBytes());
+        System.setIn(inputContent);
+        App.main(new String[2]);
+        String newLine = System.getProperty("line.separator");
+        assertEquals("1" + newLine +
+                "2" + newLine +
+                "3" + newLine, outContent.toString());
 
     }
 }

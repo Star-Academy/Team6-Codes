@@ -36,8 +36,10 @@ public class Query {
         if (queries.size() == 0)
             return;
         res.addAll(invertedIndex.get(queries.get(0)));
-        for (int i = 1; i < queries.size(); i++)
+        for (int i = 1; i < queries.size(); i++) {
             res.retainAll(invertedIndex.get(queries.get(i)));
+            System.out.println("salam");
+        }
     }
 
     private void typeOr(ArrayList<String> queries) {

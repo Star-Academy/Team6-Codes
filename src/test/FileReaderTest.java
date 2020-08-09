@@ -13,7 +13,7 @@ import app.FileReader;
 
 public class FileReaderTest {
 
-    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/app/test/test-data/1";
+    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1";
     private FileReader fileReader;
 
     private FileReader fileReaderForInvalidAddress;
