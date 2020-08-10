@@ -13,16 +13,16 @@ import app.FileReader;
 
 public class FileReaderTest {
 
-    private String folderPath = "/home/mahdi/Documents/code-star/Team-6/src/test/test-data/1";
+    private String folderPath = "src/test/test-data/1";
     private FileReader fileReader;
 
     private FileReader fileReaderForInvalidAddress;
 
     @Before
     public void initFileReaderClass() {
+
         File file = new File(folderPath);
         fileReader = new FileReader(file);
-
         File fileInvalidAddress = new File("address alaki");
         fileReaderForInvalidAddress = new FileReader(fileInvalidAddress);
     }
@@ -32,7 +32,6 @@ public class FileReaderTest {
         HashSet<String> testHash = new HashSet<>();
         testHash.add("slm");
         testHash.add("haj");
-        testHash.add("mohammad");
         testHash.add("mahdi");
         assertArrayEquals(testHash.toArray(), fileReader.scan().toArray());
     }

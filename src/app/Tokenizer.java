@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 
-
 public class Tokenizer {
     private HashMap<String, HashSet<Integer>> invertedIndex = new HashMap<>();
     private String folderPath;
@@ -12,8 +11,8 @@ public class Tokenizer {
     public HashMap<String, HashSet<Integer>> getInvertedIndex() {
         return invertedIndex;
     }
+
     /**
-     * 
      * @param folderPath address of folder that we store documents in it
      */
     public Tokenizer(String folderPath) {
@@ -23,8 +22,8 @@ public class Tokenizer {
 
     public void initFilePaths() {
         File folder = new File(folderPath);
-        File[] listOfFiles = folder.listFiles();//get files in folder path
-        for (File file: listOfFiles)
+        File[] listOfFiles = folder.listFiles();// get files in folder path
+        for (File file : listOfFiles)
             if (file.isFile())
                 tokenize(file); // tokenize all files and set them to invertedIndex
     }

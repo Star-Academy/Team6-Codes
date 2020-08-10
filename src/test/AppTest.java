@@ -34,7 +34,7 @@ public class AppTest {
     @Test
     public void mainTest() throws IOException {
 
-        App.initDocs("/home/mahdi/Documents/code-star/Team-6/src/test/test-data");
+        App.initDocs("src/test/test-data");
         App.search("+slm +haj");
 
         String newLine = System.getProperty("line.separator");
@@ -46,7 +46,7 @@ public class AppTest {
 
     @Test
     public void testStart() {
-        inputData.append("/home/mahdi/Documents/code-star/Team-6/src/test/test-data").append(System.getProperty("line.separator")).append("+slm +haj");
+        inputData.append("src/test/test-data").append(System.getProperty("line.separator")).append("+slm +haj");
         inputContent = new ByteArrayInputStream(inputData.toString().getBytes());
         System.setIn(inputContent);
         App.main(new String[2]);
