@@ -1,4 +1,4 @@
-﻿using System;
+﻿using app_console.controller;
 
 namespace app_console
 {
@@ -6,7 +6,7 @@ namespace app_console
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Manager.Run();
         }
     }
 }

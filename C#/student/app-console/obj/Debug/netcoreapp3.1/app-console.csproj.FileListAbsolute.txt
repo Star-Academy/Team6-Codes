@@ -1,0 +1,15 @@
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console.deps.json
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console.runtimeconfig.json
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console.runtimeconfig.dev.json
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console.dll
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/app-console.pdb
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.csprojAssemblyReference.cache
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.AssemblyInfoInputs.cache
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.AssemblyInfo.cs
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.csproj.CoreCompileInputs.cache
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.dll
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.pdb
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.genruntimeconfig.cache
+/home/mohammadhosein/Desktop/java/C#/student/app-console/bin/Debug/netcoreapp3.1/System.Text.Json.dll
+/home/mohammadhosein/Desktop/java/C#/student/app-console/obj/Debug/netcoreapp3.1/app-console.csproj.CopyComplete
