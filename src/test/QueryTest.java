@@ -1,6 +1,5 @@
 package test;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import app.Query;
-import app.Tokenizer;
 
 public class QueryTest {
     private Query query;

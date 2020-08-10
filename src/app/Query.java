@@ -38,7 +38,6 @@ public class Query {
         res.addAll(invertedIndex.get(queries.get(0)));
         for (int i = 1; i < queries.size(); i++) {
             res.retainAll(invertedIndex.get(queries.get(i)));
-            System.out.println("salam");
         }
     }
 
