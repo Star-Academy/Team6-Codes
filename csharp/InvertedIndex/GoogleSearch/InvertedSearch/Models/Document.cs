@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 
 namespace InvertedSearch.Models
@@ -14,6 +15,17 @@ namespace InvertedSearch.Models
             this.id = Path.GetFileName(filePath);
             this.filePath = filePath;
             this.content = File.ReadAllText(filePath);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Document document &&
+                   filePath == document.filePath;
+        }
+
+        public override int GetHashCode()
+        {
+            return filePath.GetHashCode();
         }
     }
 }

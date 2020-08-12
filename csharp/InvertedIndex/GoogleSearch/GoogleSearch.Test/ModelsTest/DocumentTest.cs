@@ -36,8 +36,5 @@ namespace GoogleSearch.Test.ModelsTest
         {
             Assert.Throws<FileNotFoundException>(() => new Document("1.txt"));
         }
-
-
-
     }
 }
