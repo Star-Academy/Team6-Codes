@@ -20,14 +20,14 @@ namespace GoogleSearch.Test.ModelsTest
         [Fact]
         public void ContentDocumentsTest()
         {
-            Assert.Equal(document.content, "slm khobi?");
+            Assert.Equal("slm khobi?" , document.content);
         }
 
         // check document id
         [Fact]
         public void IdDocumentTest()
         {
-            Assert.Equal(document.id, "1.txt");
+            Assert.Equal("1.txt", document.id);
         }
 
         // check bad address of files
