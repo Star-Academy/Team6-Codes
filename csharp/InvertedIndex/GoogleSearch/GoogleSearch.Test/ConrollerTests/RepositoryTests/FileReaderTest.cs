@@ -4,7 +4,7 @@ using Xunit;
 using Moq;
 using InvertedSearch.Models;
 using System.Collections.Generic;
-using Moq.Protected;
+
 
 namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
 {
@@ -27,9 +27,7 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         }
         public Document CreateDoc()
         {
-            var document = new Document("1.txt");
-            var x = document.Arrange(() => document.content)
-                .Returns(fileContent);
+            var document = new Mock<Document>();
             // var document = new Mock<Document>();
             document.SetupGet(doc => doc.content).Returns(fileContent);
             document.SetupGet(doc => doc.id).Returns(fileId);
