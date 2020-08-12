@@ -5,17 +5,17 @@ namespace InvertedSearch.Models
     public class IndexedToken
     {
         public string token { get; }
-        public HashSet<string> indexes { get; }
+        public HashSet<Document> indexes { get; }
 
         public IndexedToken(string token)
         {
             this.token = token;
-            this.indexes = new HashSet<string>();
+            this.indexes = new HashSet<Document>();
         }
 
-        public void AddIndex(string index)
+        public void AddIndex(Document doc)
         {
-            this.indexes.Add(index);
+            this.indexes.Add(doc);
         }
 
         public override bool Equals(object obj)

@@ -2,7 +2,12 @@ using System.Collections.Generic;
 
 namespace InvertedSearch.Models
 {
-    public class InvertedIndex
+
+    public interface IInvertedIndex
+    {
+        HashSet<Document> GetDocuments(string token);
+    }
+    public class InvertedIndex : IInvertedIndex
     {
         public Dictionary<string, IndexedToken> invertedIndex { get; }
 
@@ -12,7 +17,7 @@ namespace InvertedSearch.Models
             invertedIndex = new Dictionary<string, IndexedToken>();
         }
 
-        public void AddIndexedToken(HashSet<string> tokens, string fileName)
+        public void AddIndexedToken(HashSet<string> tokens, Document doc)
         {
             foreach (string token in tokens)
             {
@@ -20,11 +25,21 @@ namespace InvertedSearch.Models
                 {
                     invertedIndex.Add(token, new IndexedToken(token));
                 }
-                invertedIndex[token].AddIndex(fileName);
+                invertedIndex[token].AddIndex(doc);
 
             }
         }
 
-
+        public HashSet<Document> GetDocuments(string token)
+        {
+            if (invertedIndex.ContainsKey(token))
+            {
+                return invertedIndex[token].indexes;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

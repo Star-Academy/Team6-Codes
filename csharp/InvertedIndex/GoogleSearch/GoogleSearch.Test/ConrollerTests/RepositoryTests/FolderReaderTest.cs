@@ -12,7 +12,6 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
 
         public FolderReader folderReader;
 
-
         public FolderReaderTest()
         {
             folderPath = "../../../Data";

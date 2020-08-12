@@ -1,26 +1,29 @@
 using System.Collections.Generic;
 using InvertedSearch.Models;
 using Xunit;
+using Moq;
 namespace GoogleSearch.Test.ModelsTest
 {
     public class IndexedTokenTest
     {
         private IndexedToken token { get; set; }
         private string fileName;
+        private Document doc;
         private string tokenName;
 
         public IndexedTokenTest()
         {
             tokenName = "mohamad";
-            fileName = "1";
+            fileName = "../../../Data/1.txt";
+            doc = new Mock<Document>().Object;
             token = new IndexedToken(tokenName);
         }
 
         [Fact]
         public void IndexTest()
         {
-            token.AddIndex(fileName);
-            Assert.Single(token.indexes, fileName);
+            token.AddIndex(doc);
+            Assert.Single(token.indexes, doc);
         }
 
         [Fact]
