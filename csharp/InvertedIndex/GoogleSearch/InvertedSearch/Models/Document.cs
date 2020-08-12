@@ -5,10 +5,10 @@ namespace InvertedSearch.Models
 {
     public class Document
     {
-        public string id { get; }
-        public string filePath { get; }
+        public string id { get; set;}
+        public string filePath { get; set; }
 
-        public string content { get; }
+        public string content { get; set; }
 
         public Document(string filePath)
         {

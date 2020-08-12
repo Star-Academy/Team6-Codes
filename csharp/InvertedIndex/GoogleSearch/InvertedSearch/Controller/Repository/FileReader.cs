@@ -5,9 +5,19 @@ namespace InvertedSearch.Controller.Repository
 {
     public class FileReader : IRepositoryReader
     {
-        public HashSet<IndexedToken> getAllTokens()
+
+        public Document document;
+        public FileReader(Document document)
         {
-            throw new System.NotImplementedException();
+            this.document = document;
         }
+
+        public HashSet<string> getAllTokens()
+        {
+            var content = document.content;
+            var splittedContent = content.ToLower().Split(' ');
+            return new HashSet<string>(splittedContent);
+        }
+
     }
 }

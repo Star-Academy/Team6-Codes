@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using InvertedSearch.Models;
-using System.Linq;
 using System;
 
 namespace InvertedSearch.Controller.Repository
