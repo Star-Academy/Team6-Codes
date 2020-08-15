@@ -11,11 +11,6 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
 
     public class FileReaderTest
     {
-        public FileReaderTest(FileReader fileReader)
-        {
-            this.fileReader = fileReader;
-
-        }
         private FileReader fileReader { get; set; }
         private string fileContent = "hello world";
         private string fileId = "TestFile";
@@ -28,19 +23,10 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         public Document CreateDoc()
         {
             var document = new Mock<Document>();
-            // var document = new Mock<Document>();
-            document.SetupGet(doc => doc.content).Returns(fileContent);
-            document.SetupGet(doc => doc.id).Returns(fileId);
-
-
-            //document.Protected().SetupGet<string>(fileContent).
-            //document.Setup(doc => doc.content).Returns(fileContent);
-            /* document.SetupAllProperties();
+            document.SetupAllProperties();
             document.Object.content = fileContent;
-            document.Object.id = fileId;*/
+            document.Object.id = fileId;
             return document.Object;
-
-
         }
 
         [Fact]
@@ -49,7 +35,6 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
             HashSet<string> tokens = new HashSet<string>();
             tokens.Add("hello");
             tokens.Add("world");
-
             Assert.Equal(tokens, fileReader.getAllTokens());
 
         }

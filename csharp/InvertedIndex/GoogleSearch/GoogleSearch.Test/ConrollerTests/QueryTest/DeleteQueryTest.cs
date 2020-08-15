@@ -1,0 +1,63 @@
+using System.Collections.Generic;
+using InvertedSearch.Controller.Query;
+using InvertedSearch.Models;
+using Moq;
+using Xunit;
+
+namespace GoogleSearch.Test.ConrollerTests.QueryTest
+{
+    public class DeleteQueryTest
+    {
+        DeleteQuery deleteQuery;
+
+        IInvertedIndex iInvertedIndex;
+
+        string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
+
+        public DeleteQueryTest()
+        {
+            deleteQuery = new DeleteQuery(query);
+        }
+        public List<Document> PrepareMockDocuments(int len)
+        {
+            var docs = new List<Document>() { };
+            for (int i = 0; i < len; i++)
+            {
+                var docMock = new Mock<Document>();
+
+                docMock.SetupAllProperties();
+                docMock.Object.filePath = i.ToString();
+                docs.Add(docMock.Object);
+            }
+            return docs;
+
+        }
+
+
+        [Fact]
+        public void QueryRegexTest()
+        {
+            List<string> expected = new List<string>() { "mahdi", "chert" };
+            deleteQuery = new DeleteQuery(query);
+            Assert.Equal(expected, deleteQuery.queries);
+        }
+        [Fact]
+        public void ProcessQueryTest()
+        {
+            var iInvertedIndexMock = new Mock<IInvertedIndex>();
+            var docs = PrepareMockDocuments(3);
+            iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("mahdi"))
+            .Returns(new HashSet<Document>() { docs[0] });
+
+            iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("chert"))
+            .Returns(new HashSet<Document>() { docs[1], docs[2] });
+
+            iInvertedIndex = (IInvertedIndex)iInvertedIndexMock.Object;
+
+            HashSet<Document> actualResult = deleteQuery.ProcessQuery(iInvertedIndex);
+            HashSet<Document> expected = new HashSet<Document>(docs);
+            Assert.Equal(expected, actualResult);
+
+        }
+    }
+}

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 namespace InvertedSearch.Models
 {
 
-    public interface IInvertedIndex
-    {
-        HashSet<Document> GetDocuments(string token);
-    }
     public class InvertedIndex : IInvertedIndex
     {
         public Dictionary<string, IndexedToken> invertedIndex { get; }
