@@ -20,7 +20,7 @@ namespace AppConsole.Model
 
         public override string ToString()
         {
-            return String.Format("{0} {1} {2}", FirstName, LastName, Average);
+            return String.Format($"{FirstName} {LastName} {Average}");
         }
 
         public override int GetHashCode()
