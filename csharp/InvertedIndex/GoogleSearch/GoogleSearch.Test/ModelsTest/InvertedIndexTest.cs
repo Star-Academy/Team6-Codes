@@ -21,23 +21,24 @@ namespace GoogleSearch.Test.ModelsTest
         public InvertedIndexTest()
         {
 
-            firstDocument = new Mock<Document>().Object;
-            secondDocument = new Mock<Document>().Object;
+            firstDocument = new Document("1");
+            secondDocument = new Document("2");
+
             invertedIndexObject = new InvertedIndex();
             invertedIndexExpectedTokens = new Dictionary<string, IndexedToken>();
             firstTokens = new HashSet<string>(firstTokenStrings);
             secondTokens = new HashSet<string>(secondTokenStrings);
-            prepareExpectedIndexedTokens();
+            PrepareExpectedIndexedTokens();
         }
 
-        public void prepareExpectedIndexedTokens()
+        public void PrepareExpectedIndexedTokens()
         {
             var salamToken = new IndexedToken("salam");
             var khubiToken = new IndexedToken("khubi");
 
             salamToken.AddIndex(firstDocument);
             salamToken.AddIndex(secondDocument);
-            
+
             khubiToken.AddIndex(firstDocument);
 
             invertedIndexExpectedTokens.Add("salam", salamToken);
@@ -55,10 +56,11 @@ namespace GoogleSearch.Test.ModelsTest
         }
 
         [Fact]
-        public void getDocumentsTest()
+        public void GetDocumentsTest()
         {
-            
             Assert.Equal(invertedIndexExpectedTokens["salam"].indexes, invertedIndexObject.GetDocuments("salam"));
         }
+
+
     }
 }

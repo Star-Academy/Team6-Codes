@@ -5,7 +5,7 @@ namespace InvertedSearch.Controller.Repository
 {
     public interface IRepositoryReader
     {
-        HashSet<string> getAllTokens();
+        HashSet<string> GetAllTokens();
 
     }
 }

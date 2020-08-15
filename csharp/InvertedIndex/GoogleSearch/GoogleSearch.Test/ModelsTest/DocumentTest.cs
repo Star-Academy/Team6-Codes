@@ -12,29 +12,17 @@ namespace GoogleSearch.Test.ModelsTest
         // prepare
         public DocumentTest()
         {
-            FilePath = "../../../Data/1.txt";
+            FilePath = "../../../Data/1";
             document = new Document(FilePath);
-        }
-
-        // check content of document
-        [Fact]
-        public void ContentDocumentsTest()
-        {
-            Assert.Equal("slm khobi?" , document.content);
         }
 
         // check document id
         [Fact]
         public void IdDocumentTest()
         {
-            Assert.Equal("1.txt", document.id);
+            Assert.Equal("1", document.id);
         }
 
-        // check bad address of files
-        [Fact]
-        public void BadAddress()
-        {
-            Assert.Throws<FileNotFoundException>(() => new Document("1.txt"));
-        }
+        
     }
 }

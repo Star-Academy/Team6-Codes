@@ -8,9 +8,9 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
 {
     public class AndQueryTest
     {
-        AndQuery andQuery;
+        private AndQuery andQuery;
 
-        IInvertedIndex iInvertedIndex;
+        private IInvertedIndex iInvertedIndex;
 
         string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
 
@@ -26,22 +26,14 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             Assert.Equal(expected, andQuery.queries);
         }
 
-
-        /* var document = new Mock<Document>();
-            document.SetupAllProperties();
-            document.Object.content = fileContent;
-            document.Object.id = fileId;
-            return document.Object; */
         private List<Document> PrepareMockDocuments(int length){
 
             List<Document> res = new List<Document>();
 
             for (int i = 0; i < length; i++)
             {
-                var document = new Mock<Document>();
-                document.SetupAllProperties();
-                document.Object.filePath = i.ToString();
-                res.Add(document.Object);
+                var document = new Document(i.ToString());
+                res.Add(document);
             }
             return res;
 

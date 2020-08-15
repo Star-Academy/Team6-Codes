@@ -21,11 +21,9 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         [Fact]
         public void DocumentsOfFolderTest()
         {
-            HashSet<Document> docs = new HashSet<Document>();
+            HashSet<Document> docs = new HashSet<Document>() { new Document(folderPath + "/3"), new Document(folderPath + "/2"), new Document(folderPath + "/1") };
 
-            docs.Add(new Document(folderPath + "/1.txt"));
-
-            Assert.Equal(docs , folderReader.DocumentsOfFolder());
+            Assert.Equal(docs, folderReader.DocumentsOfFolder());
         }
     }
 }

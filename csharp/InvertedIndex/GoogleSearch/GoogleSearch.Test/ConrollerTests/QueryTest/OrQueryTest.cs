@@ -9,9 +9,9 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
     public class OrQueryTest
     {
 
-        OrQuery orQuery;
+        private OrQuery orQuery;
 
-        IInvertedIndex iInvertedIndex;
+        private IInvertedIndex iInvertedIndex;
 
         string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
 
@@ -32,11 +32,9 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             var docs = new List<Document>() { };
             for (int i = 0; i < len; i++)
             {
-                var docMock = new Mock<Document>();
+                var docMock = new Document(i.ToString());
 
-                docMock.SetupAllProperties();
-                docMock.Object.filePath = i.ToString();
-                docs.Add(docMock.Object);
+                docs.Add(docMock);
             }
             return docs;
 
@@ -67,6 +65,11 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             HashSet<Document> expected = new HashSet<Document>(documents);
 
             Assert.Equal(expected, actualResult);
+
+
+            /* Expected: HashSet<Document> [Mock<Document:3>.Object, Mock<Document:11>.Object, Mock<Document:16>.Object]
+               Actual:   HashSet<Document> [Mock<Document:3>.Object, Mock<Document:11>.Object, Mock<Document:11>.Object, Mock<Document:16>.Object]
+  */
 
         }
     }

@@ -7,14 +7,12 @@ namespace GoogleSearch.Test.ModelsTest
     public class IndexedTokenTest
     {
         private IndexedToken token { get; set; }
-        private string fileName;
         private Document doc;
         private string tokenName;
 
         public IndexedTokenTest()
         {
             tokenName = "mohamad";
-            fileName = "../../../Data/1.txt";
             doc = new Mock<Document>().Object;
             token = new IndexedToken(tokenName);
         }

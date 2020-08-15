@@ -3,7 +3,7 @@ using InvertedSearch.Models;
 
 namespace InvertedSearch.Controller.Query
 {
-    public class Query
+    public class QueryManager
     {
         private IInvertedIndex invertedIndex;
         private string query;
@@ -13,7 +13,7 @@ namespace InvertedSearch.Controller.Query
         public OrQuery orQuery { get; }
         public DeleteQuery deleteQuery { get; }
 
-        public Query(string query, IInvertedIndex invertedIndex)
+        public QueryManager(string query, IInvertedIndex invertedIndex)
         {
             this.query = query;
             this.invertedIndex = invertedIndex;

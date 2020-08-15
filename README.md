@@ -1,4 +1,4 @@
-# Team1-Codes
+# Team6-Codes
 ## Contributors
  - Mohamad hossein heidarzadeh
  - Mahdi Haji Mohamad Ali

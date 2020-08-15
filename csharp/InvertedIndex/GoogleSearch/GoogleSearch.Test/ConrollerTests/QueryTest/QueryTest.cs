@@ -13,18 +13,16 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
 
         IInvertedIndex iInvertedIndex;
 
-        Query query;
+        QueryManager query;
 
         public List<Document> PrepareMockDocuments(int len)
         {
             var docs = new List<Document>() { };
             for (int i = 0; i < len; i++)
             {
-                var docMock = new Mock<Document>();
+                var docMock = new Document(i.ToString());
+                docs.Add(docMock);
 
-                docMock.SetupAllProperties();
-                docMock.Object.filePath = i.ToString();
-                docs.Add(docMock.Object);
             }
             return docs;
         }
@@ -65,7 +63,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             iInvertedIndex = (IInvertedIndex)iInvertedIndexMock.Object;
 
 
-            query = new Query(queryText, iInvertedIndex);
+            query = new QueryManager(queryText, iInvertedIndex);
 
             var expected = new HashSet<Document>() { documents[1], documents[2] };
 

@@ -8,9 +8,9 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
 {
     public class DeleteQueryTest
     {
-        DeleteQuery deleteQuery;
+        private DeleteQuery deleteQuery;
 
-        IInvertedIndex iInvertedIndex;
+        private IInvertedIndex iInvertedIndex;
 
         string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
 
@@ -23,11 +23,8 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             var docs = new List<Document>() { };
             for (int i = 0; i < len; i++)
             {
-                var docMock = new Mock<Document>();
-
-                docMock.SetupAllProperties();
-                docMock.Object.filePath = i.ToString();
-                docs.Add(docMock.Object);
+                var docMock = new Document(i.ToString());
+                docs.Add(docMock);
             }
             return docs;
 

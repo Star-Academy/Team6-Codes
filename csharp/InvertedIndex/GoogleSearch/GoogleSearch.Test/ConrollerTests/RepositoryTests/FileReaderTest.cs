@@ -4,7 +4,7 @@ using Xunit;
 using Moq;
 using InvertedSearch.Models;
 using System.Collections.Generic;
-
+using System.IO;
 
 namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
 {
@@ -12,9 +12,7 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
     public class FileReaderTest
     {
         private FileReader fileReader { get; set; }
-        private string fileContent = "hello world";
-        private string fileId = "TestFile";
-
+        private string path = "../../../Data/1";
         public FileReaderTest()
         {
             var doc = CreateDoc();
@@ -22,21 +20,26 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         }
         public Document CreateDoc()
         {
-            var document = new Mock<Document>();
-            document.SetupAllProperties();
-            document.Object.content = fileContent;
-            document.Object.id = fileId;
-            return document.Object;
+            var document = new Document(path);
+            return document;
         }
 
         [Fact]
-        public void getAllTokensTest()
+        public void GetAllTokensTest()
         {
             HashSet<string> tokens = new HashSet<string>();
-            tokens.Add("hello");
-            tokens.Add("world");
-            Assert.Equal(tokens, fileReader.getAllTokens());
+            tokens.Add("slm");
+            tokens.Add("khobi");
+            Assert.Equal(tokens, fileReader.GetAllTokens());
 
+        }
+
+        // check bad address of files
+        [Fact]
+        public void BadAddress()
+        {
+            var reader = new FileReader(new Document("1"));
+            Assert.Throws<FileNotFoundException>(() => reader.GetAllTokens());
         }
     }
 }

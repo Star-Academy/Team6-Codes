@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using InvertedSearch.Models;
 
 namespace InvertedSearch.Controller.Repository
@@ -6,15 +7,15 @@ namespace InvertedSearch.Controller.Repository
     public class FileReader : IRepositoryReader
     {
 
-        public Document document;
+        private Document document { get; }
         public FileReader(Document document)
         {
             this.document = document;
         }
 
-        public HashSet<string> getAllTokens()
+        public HashSet<string> GetAllTokens()
         {
-            var content = document.content;
+            var content = File.ReadAllText(document.filePath);
             var splittedContent = content.ToLower().Split(' ');
             return new HashSet<string>(splittedContent);
         }
