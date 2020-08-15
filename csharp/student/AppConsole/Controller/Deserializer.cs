@@ -6,15 +6,17 @@ namespace AppConsole.Controller
     public class Deserializer<T>
     {
 
-        private string JsonPath;
+        private readonly string jsonPath;
 
-        public Deserializer(string jsonPath){
-            this.JsonPath = jsonPath;
+        public Deserializer(string jsonPath)
+        {
+            this.jsonPath = jsonPath;
         }
 
-        public T GetObject(){
-            string scoresJsonText = File.ReadAllText(JsonPath);
-            T value = JsonSerializer.Deserialize<T> (scoresJsonText);
+        public T GetObject()
+        {
+            string scoresJsonText = File.ReadAllText(jsonPath);
+            T value = JsonSerializer.Deserialize<T>(scoresJsonText);
             return value;
         }
     }

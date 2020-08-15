@@ -9,9 +9,12 @@ namespace AppConsole.View
     {
         public static void ShowTop(List<Student> students, int topLength)
         {
-            students.Take(topLength)
-            .ToList().
-            ForEach(student => Console.WriteLine(student));
+
+            foreach (Student student in students.Take(topLength))
+            {
+
+                Console.WriteLine(student);
+            }
 
         }
     }
