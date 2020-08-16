@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageId>StarAcademy.Team6.InvertedSearch</PackageId>
+        <PackageId>     </PackageId>
         <Authors>Mohamadhossein Heidarzadeh - Mahdi Haji Mohamad Ali</Authors>
         <Company>Star Academy</Company>
     </PropertyGroup>
