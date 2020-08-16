@@ -24,11 +24,11 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: csharp/InvertedSearch/GoogleSearch
+      working-directory: csharp/InvertedIndex/GoogleSearch
 
     - name: Test
       run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
-      working-directory: csharp/InvertedSearch/GoogleSearch
+      working-directory: csharp/InvertedIndex/GoogleSearch
 
     - name: Publish code coverage reports to codecove.io
       uses: codecov/codecov-action@v1
