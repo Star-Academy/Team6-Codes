@@ -1,4 +1,4 @@
-namespace app_console.model
+namespace AppConsole.Model
 {
     public class Grade
     {
