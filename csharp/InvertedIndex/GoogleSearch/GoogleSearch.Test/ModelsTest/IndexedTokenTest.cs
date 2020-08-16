@@ -33,8 +33,8 @@ namespace GoogleSearch.Test.ModelsTest
         [Fact]
         public void HashCodeTest()
         {
-            var tokenSet = new HashSet<IndexedToken>(){token};
-            Assert.True(tokenSet.Contains(new IndexedToken(tokenName)));
+            var tokenSet = new HashSet<IndexedToken>() { token };
+            Assert.Contains(new IndexedToken(tokenName), tokenSet);
         }
     }
 

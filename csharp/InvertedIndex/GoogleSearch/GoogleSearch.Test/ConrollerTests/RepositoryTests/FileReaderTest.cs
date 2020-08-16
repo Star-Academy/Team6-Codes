@@ -1,9 +1,7 @@
 
 using InvertedSearch.Controller.Repository;
 using Xunit;
-using Moq;
 using InvertedSearch.Models;
-using System.Collections.Generic;
 using System.IO;
 
 namespace GoogleSearch.Test.ConrollerTests.RepositoryTests

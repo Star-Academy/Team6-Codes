@@ -8,7 +8,7 @@ namespace InvertedSearch.Controller
 
         private readonly string pattern = @"[\s\+-?!@;.:]+";
 
-        private readonly char[] invalidChars = new char[]{' ','+','-','?','!','@',';','.',':'};
+        private readonly char[] invalidChars = {' ','+','-','?','!','@',';','.',':'};
         
         public Tokenizer(string text){
             this.text = text.Trim(invalidChars).ToLower();

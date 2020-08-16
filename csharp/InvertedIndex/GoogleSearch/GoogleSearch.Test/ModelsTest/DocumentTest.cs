@@ -1,6 +1,5 @@
 using InvertedSearch.Models;
 using Xunit;
-using System.IO;
 
 namespace GoogleSearch.Test.ModelsTest
 {

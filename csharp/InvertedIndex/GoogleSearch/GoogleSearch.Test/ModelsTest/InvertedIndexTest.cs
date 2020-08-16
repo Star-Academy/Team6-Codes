@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using InvertedSearch.Models;
 using Xunit;
-using System.Linq;
-using Moq;
 
 namespace GoogleSearch.Test.ModelsTest
 {
@@ -31,7 +29,7 @@ namespace GoogleSearch.Test.ModelsTest
             PrepareExpectedIndexedTokens();
         }
 
-        public void PrepareExpectedIndexedTokens()
+        private void PrepareExpectedIndexedTokens()
         {
             var salamToken = new IndexedToken("salam");
             var khubiToken = new IndexedToken("khubi");

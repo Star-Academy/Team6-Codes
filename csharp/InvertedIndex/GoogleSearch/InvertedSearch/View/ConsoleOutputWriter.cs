@@ -6,7 +6,7 @@ namespace InvertedSearch.View
 {
     public class ConsoleOutputWriter : IOutputWriter
     {
-        public void ShowOutput(HashSet<Document> docs)
+        public void ShowOutput(IEnumerable<Document> docs)
         {
             foreach (Document doc in docs)
             {

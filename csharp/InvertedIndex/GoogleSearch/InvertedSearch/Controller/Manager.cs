@@ -26,7 +26,7 @@ namespace InvertedSearch.Controller
             foreach (Document doc in documents)
             {
                 var fileReader = new FileReader(doc);
-                HashSet<string> tokens = new Tokenizer(fileReader.GetContent()).Tokenize();
+                var tokens = new Tokenizer(fileReader.GetContent()).Tokenize();
                 invertedIndex.AddIndexedToken(tokens, doc);
             }
             var query = new QueryManager(inputReader.GetQuery(), invertedIndex);

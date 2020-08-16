@@ -5,6 +5,6 @@ namespace InvertedSearch.View
 {
     public interface IOutputWriter
     {
-        void ShowOutput(HashSet<Document> docs);
+        void ShowOutput(IEnumerable<Document> docs);
     }
 }
