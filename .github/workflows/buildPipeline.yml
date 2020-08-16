@@ -20,7 +20,7 @@ jobs:
     
     - name: Install dependencies
       run: dotnet restore
-      working-directory: csharp/InvertedSearch/GoogleSearch
+      working-directory: csharp/InvertedIndex/GoogleSearch
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
