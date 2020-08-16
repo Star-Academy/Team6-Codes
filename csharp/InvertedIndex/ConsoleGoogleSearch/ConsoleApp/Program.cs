@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InvertedSearch.Controller;
+using InvertedSearch.View;
 
 namespace ConsoleApp
 {
@@ -6,7 +7,8 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Manager manager = new Manager(new ConsoleInputReader() ,new ConsoleOutputWriter());
+            manager.Run();
         }
     }
 }
