@@ -25,13 +25,10 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         }
 
         [Fact]
-        public void GetAllTokensTest()
+        public void GetContentTest()
         {
-            var tokens = new HashSet<string>();
-            tokens.Add("slm");
-            tokens.Add("khobi");
-            Assert.Equal(tokens, fileReader.GetAllTokens());
-
+            var tokens = "slm khobi";
+            Assert.Equal(tokens, fileReader.GetContent());
         }
 
         // check bad address of files
@@ -39,7 +36,7 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         public void BadAddress()
         {
             var reader = new FileReader(new Document("1"));
-            Assert.Throws<FileNotFoundException>(() => reader.GetAllTokens());
+            Assert.Throws<FileNotFoundException>(() => reader.GetContent());
         }
     }
 }

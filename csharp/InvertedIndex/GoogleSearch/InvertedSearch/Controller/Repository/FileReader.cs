@@ -13,11 +13,10 @@ namespace InvertedSearch.Controller.Repository
             this.document = document;
         }
 
-        public HashSet<string> GetAllTokens()
+        public string GetContent()
         {
             var content = File.ReadAllText(document.FilePath);
-            var splittedContent = content.ToLower().Split(' ');
-            return new HashSet<string>(splittedContent);
+            return content;
         }
 
     }
