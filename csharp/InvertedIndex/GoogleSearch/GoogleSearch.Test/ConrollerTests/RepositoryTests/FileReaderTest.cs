@@ -11,8 +11,8 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
 
     public class FileReaderTest
     {
-        private FileReader fileReader { get; set; }
-        private string path = "../../../Data/1";
+        private FileReader fileReader;
+        private const string path = "../../../Data/1";
         public FileReaderTest()
         {
             var doc = CreateDoc();
@@ -27,7 +27,7 @@ namespace GoogleSearch.Test.ConrollerTests.RepositoryTests
         [Fact]
         public void GetAllTokensTest()
         {
-            HashSet<string> tokens = new HashSet<string>();
+            var tokens = new HashSet<string>();
             tokens.Add("slm");
             tokens.Add("khobi");
             Assert.Equal(tokens, fileReader.GetAllTokens());

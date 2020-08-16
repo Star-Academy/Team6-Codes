@@ -12,7 +12,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
 
         private IInvertedIndex iInvertedIndex;
 
-        string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
+        const string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
 
         public AndQueryTest()
         {
@@ -22,13 +22,13 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         [Fact]
         public void QueryRegexTest()
         {
-            List<string> expected = new List<string>() { "salam", "mohamadhossein", "search" };
+            var expected = new List<string>() { "salam", "mohamadhossein", "search" };
             Assert.Equal(expected, andQuery.queries);
         }
 
         private List<Document> PrepareMockDocuments(int length){
 
-            List<Document> res = new List<Document>();
+            var res = new List<Document>();
 
             for (int i = 0; i < length; i++)
             {
@@ -42,26 +42,17 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         [Fact]
         public void ProcessQueryTest()
         {
-            List<Document> documents = PrepareMockDocuments(4);
-
-
+            var documents = PrepareMockDocuments(4);
             var iInvertedIndexMock = new Mock<IInvertedIndex>();
-
             iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("salam"))
-            .Returns(new HashSet<Document>() { documents[0], documents[1] });
-
-
+                .Returns(new HashSet<Document>() { documents[0], documents[1] });
             iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("mohamadhossein"))
-            .Returns(new HashSet<Document>() { documents[1], documents[2]});
-
+                .Returns(new HashSet<Document>() { documents[1], documents[2]});
             iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("search"))
-            .Returns(new HashSet<Document>() { documents[1], documents[3] });
-
+                .Returns(new HashSet<Document>() { documents[1], documents[3] });
             iInvertedIndex = (IInvertedIndex)iInvertedIndexMock.Object;
-
-            HashSet<Document> actualResult = andQuery.ProcessQuery(iInvertedIndex);
-            HashSet<Document> expected = new HashSet<Document>() {documents[1]};
-
+            var actualResult = andQuery.ProcessQuery(iInvertedIndex);
+            var expected = new HashSet<Document>() {documents[1]};
             Assert.Equal(expected, actualResult);
         }
     }

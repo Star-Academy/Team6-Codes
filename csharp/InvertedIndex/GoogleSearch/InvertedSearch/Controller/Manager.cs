@@ -9,8 +9,8 @@ namespace InvertedSearch.Controller
     public class Manager
     {
 
-        private IInputReader inputReader { get; }
-        private IOutputWriter outputWriter { get; }
+        private readonly IInputReader inputReader;
+        private readonly IOutputWriter outputWriter;
         public HashSet<Document> result { get; set; }
         public Manager(IInputReader inputReader, IOutputWriter iOutputWriter)
         {
@@ -25,14 +25,12 @@ namespace InvertedSearch.Controller
             var invertedIndex = new InvertedIndex();
             foreach (Document doc in documents)
             {
-                FileReader fileReader = new FileReader(doc);
+                var fileReader = new FileReader(doc);
                 invertedIndex.AddIndexedToken(fileReader.GetAllTokens(), doc);
             }
-
             var query = new QueryManager(inputReader.GetQuery(), invertedIndex);
             result = query.QueryProcess();
-            // outputWriter.ShowOutput(result);
-
+            outputWriter.ShowOutput(result);
         }
 
     }

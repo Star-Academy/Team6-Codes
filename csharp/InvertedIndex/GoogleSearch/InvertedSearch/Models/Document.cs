@@ -5,25 +5,25 @@ namespace InvertedSearch.Models
 {
     public class Document
     {
-        public virtual string id { get; set; }
-        public virtual string filePath { get; set; }
+        public virtual string Id { get; set; }
+        public virtual string FilePath { get; set; }
 
-        public Document() { }
+       public Document() { }
         public Document(string filePath)
         {
-            this.id = Path.GetFileName(filePath);
-            this.filePath = filePath;
+            this.Id = Path.GetFileName(filePath);
+            this.FilePath = filePath;
         }
 
         public override int GetHashCode()
         {
-            return filePath.GetHashCode();
+            return FilePath.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
             return obj is Document document &&
-                   filePath == document.filePath;
+                   FilePath == document.FilePath;
         }
     }
 }

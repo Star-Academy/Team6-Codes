@@ -28,14 +28,9 @@ namespace InvertedSearch.Models
 
         public HashSet<Document> GetDocuments(string token)
         {
-            if (invertedIndex.ContainsKey(token))
-            {
-                return invertedIndex[token].indexes;
-            }
-            else
-            {
-                return null;
-            }
+            if (invertedIndex.TryGetValue(token, out var indexedToken))
+                return indexedToken.Indexes;
+            return null;
         }
     }
 }

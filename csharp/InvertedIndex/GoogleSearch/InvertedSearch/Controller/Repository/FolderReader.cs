@@ -7,19 +7,16 @@ namespace InvertedSearch.Controller.Repository
 {
     public class FolderReader
     {
-        private string folderPath { get; set; }
+        private string folderPath;
         public FolderReader(string folderPath)
         {
             this.folderPath = folderPath;
         }
         public HashSet<Document> DocumentsOfFolder()
         {
-            HashSet<Document> documents = new HashSet<Document>();
-
-            string[] filePaths = Directory.GetFiles(folderPath);
-
+            var documents = new HashSet<Document>();
+            var filePaths = Directory.GetFiles(folderPath);
             Array.ForEach(filePaths, filePath => documents.Add(new Document(filePath)));
-
             return documents;
         }
     }

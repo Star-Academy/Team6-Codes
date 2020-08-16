@@ -7,20 +7,18 @@ namespace GoogleSearch.Test.ModelsTest
     public class DocumentTest
     {
         private Document document;
-        private string FilePath { get; set; }
-
+        private const string filePath = "../../../Data/1";
         // prepare
         public DocumentTest()
         {
-            FilePath = "../../../Data/1";
-            document = new Document(FilePath);
+            document = new Document(filePath);
         }
 
         // check document id
         [Fact]
         public void IdDocumentTest()
         {
-            Assert.Equal("1", document.id);
+            Assert.Equal("1", document.Id);
         }
 
         

@@ -4,18 +4,18 @@ namespace InvertedSearch.Models
 {
     public class IndexedToken
     {
-        public string token { get; }
-        public HashSet<Document> indexes { get; }
+        private string token;
+        public HashSet<Document> Indexes{get;}
 
         public IndexedToken(string token)
         {
             this.token = token;
-            this.indexes = new HashSet<Document>();
+            this.Indexes = new HashSet<Document>();
         }
 
         public void AddIndex(Document doc)
         {
-            this.indexes.Add(doc);
+            this.Indexes.Add(doc);
         }
 
         public override bool Equals(object obj)

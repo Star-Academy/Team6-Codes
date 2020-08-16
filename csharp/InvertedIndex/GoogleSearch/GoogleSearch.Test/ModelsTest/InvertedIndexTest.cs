@@ -48,7 +48,6 @@ namespace GoogleSearch.Test.ModelsTest
             invertedIndexObject.AddIndexedToken(secondTokens, secondDocument);
         }
 
-
         [Fact]
         public void AddIndexedTokenTest()
         {
@@ -58,9 +57,7 @@ namespace GoogleSearch.Test.ModelsTest
         [Fact]
         public void GetDocumentsTest()
         {
-            Assert.Equal(invertedIndexExpectedTokens["salam"].indexes, invertedIndexObject.GetDocuments("salam"));
+            Assert.Equal(invertedIndexExpectedTokens["salam"].Indexes, invertedIndexObject.GetDocuments("salam"));
         }
-
-
     }
 }

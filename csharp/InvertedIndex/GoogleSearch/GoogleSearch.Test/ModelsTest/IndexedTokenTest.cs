@@ -6,7 +6,7 @@ namespace GoogleSearch.Test.ModelsTest
 {
     public class IndexedTokenTest
     {
-        private IndexedToken token { get; set; }
+        private IndexedToken token;
         private Document doc;
         private string tokenName;
 
@@ -21,7 +21,7 @@ namespace GoogleSearch.Test.ModelsTest
         public void IndexTest()
         {
             token.AddIndex(doc);
-            Assert.Single(token.indexes, doc);
+            Assert.Single(token.Indexes, doc);
         }
 
         [Fact]
@@ -33,8 +33,7 @@ namespace GoogleSearch.Test.ModelsTest
         [Fact]
         public void HashCodeTest()
         {
-            HashSet<IndexedToken> tokenSet = new HashSet<IndexedToken>();
-            tokenSet.Add(token);
+            var tokenSet = new HashSet<IndexedToken>(){token};
             Assert.True(tokenSet.Contains(new IndexedToken(tokenName)));
         }
     }

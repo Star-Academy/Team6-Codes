@@ -15,7 +15,7 @@ namespace InvertedSearch.Controller.Query
 
         public override HashSet<Document> ProcessQuery(IInvertedIndex invertedIndex)
         {
-            HashSet<Document> result = new HashSet<Document>();
+            var result = new HashSet<Document>();
             foreach (string query in this.queries)
             {
                 result.UnionWith(invertedIndex.GetDocuments(query));

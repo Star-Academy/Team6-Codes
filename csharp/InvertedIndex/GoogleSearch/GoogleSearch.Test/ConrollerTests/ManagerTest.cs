@@ -10,30 +10,21 @@ namespace GoogleSearch.Test.ConrollerTests
     public class ManagerTest
     {
         private Manager manager;
-
         private IInputReader inputReader;
-
-        private string path = "../../../Data";
-        private string query = "-slm +khobi mamnoon";
+        private const string path = "../../../Data";
+        private const string query = "-slm +khobi mamnoon";
         List<Document> docs;
-        private int documentCount = 3;
+        private const int documentCount = 3;
 
         public ManagerTest()
         {
             var inputReaderMock = new Mock<IInputReader>();
-
             inputReaderMock.Setup(reader => reader.GetPath()).Returns(path);
             inputReaderMock.Setup(reader => reader.GetQuery()).Returns(query);
             inputReader = inputReaderMock.Object;
-
             var outputWriterMock = new Mock<IOutputWriter>();
-
             outputWriterMock.Setup(writer => writer.ShowOutput(new HashSet<Document>()));
-
-
             manager = new Manager(inputReader, outputWriterMock.Object);
-
-
         }
 
         [Fact]

@@ -12,7 +12,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
 
         private IInvertedIndex iInvertedIndex;
 
-        string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
+        const string query = "+salam -mahdi salam mohamadhossein -chert +pert search";
 
         public DeleteQueryTest()
         {
@@ -34,7 +34,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         [Fact]
         public void QueryRegexTest()
         {
-            List<string> expected = new List<string>() { "mahdi", "chert" };
+            var expected = new List<string>() { "mahdi", "chert" };
             deleteQuery = new DeleteQuery(query);
             Assert.Equal(expected, deleteQuery.queries);
         }
@@ -44,15 +44,12 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
             var iInvertedIndexMock = new Mock<IInvertedIndex>();
             var docs = PrepareMockDocuments(3);
             iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("mahdi"))
-            .Returns(new HashSet<Document>() { docs[0] });
-
+                .Returns(new HashSet<Document>() { docs[0] });
             iInvertedIndexMock.Setup(invertedIndex => invertedIndex.GetDocuments("chert"))
-            .Returns(new HashSet<Document>() { docs[1], docs[2] });
-
+                .Returns(new HashSet<Document>() { docs[1], docs[2] });
             iInvertedIndex = (IInvertedIndex)iInvertedIndexMock.Object;
-
-            HashSet<Document> actualResult = deleteQuery.ProcessQuery(iInvertedIndex);
-            HashSet<Document> expected = new HashSet<Document>(docs);
+            var actualResult = deleteQuery.ProcessQuery(iInvertedIndex);
+            var expected = new HashSet<Document>(docs);
             Assert.Equal(expected, actualResult);
 
         }

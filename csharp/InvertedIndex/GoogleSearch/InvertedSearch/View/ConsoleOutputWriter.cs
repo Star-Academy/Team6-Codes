@@ -10,7 +10,7 @@ namespace InvertedSearch.View
         {
             foreach (Document doc in docs)
             {
-                Console.WriteLine(doc.id);
+                Console.WriteLine(doc.Id);
             }
         }
     }
