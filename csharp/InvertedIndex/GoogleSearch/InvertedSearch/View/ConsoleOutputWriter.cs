@@ -8,7 +8,7 @@ namespace InvertedSearch.View
     {
         public void ShowOutput(IEnumerable<Document> docs)
         {
-            foreach (Document doc in docs)
+            foreach (var doc in docs)
             {
                 Console.WriteLine(doc.Id);
             }

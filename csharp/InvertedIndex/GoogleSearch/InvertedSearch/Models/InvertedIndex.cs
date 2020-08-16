@@ -13,9 +13,9 @@ namespace InvertedSearch.Models
             invertedIndex = new Dictionary<string, IndexedToken>();
         }
 
-        public void AddIndexedToken(HashSet<string> tokens, Document doc)
+        public void AddIndexedToken(IEnumerable<string> tokens, Document doc)
         {
-            foreach (string token in tokens)
+            foreach (var token in tokens)
             {
                 if (!invertedIndex.ContainsKey(token))
                 {
