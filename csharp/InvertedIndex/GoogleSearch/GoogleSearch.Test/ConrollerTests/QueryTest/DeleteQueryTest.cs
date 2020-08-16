@@ -36,7 +36,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         {
             var expected = new List<string>() { "mahdi", "chert" };
             deleteQuery = new DeleteQuery(query);
-            Assert.Equal(expected, deleteQuery.queries);
+            Assert.Equal(expected, deleteQuery.Queries);
         }
         [Fact]
         public void ProcessQueryTest()

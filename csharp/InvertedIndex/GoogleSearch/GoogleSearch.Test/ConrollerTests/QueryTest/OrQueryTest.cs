@@ -20,7 +20,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         public void QueryRegexTest()
         {
             var expected = new List<string>() { "salam", "pert" };
-            Assert.Equal(expected, orQuery.queries);
+            Assert.Equal(expected, orQuery.Queries);
         }
 
         public List<Document> PrepareMockDocuments(int len)

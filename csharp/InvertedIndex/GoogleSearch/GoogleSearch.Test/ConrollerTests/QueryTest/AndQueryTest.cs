@@ -23,7 +23,7 @@ namespace GoogleSearch.Test.ConrollerTests.QueryTest
         public void QueryRegexTest()
         {
             var expected = new List<string>() { "salam", "mohamadhossein", "search" };
-            Assert.Equal(expected, andQuery.queries);
+            Assert.Equal(expected, andQuery.Queries);
         }
 
         private List<Document> PrepareMockDocuments(int length){
