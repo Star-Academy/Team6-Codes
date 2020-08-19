@@ -16,33 +16,18 @@ namespace ElasticNest.Controller
             var response = client.Indices.Create(index, setting =>
             setting.Settings(CreateSettings)
             .Map<Person>(CreateMapping));
-            /* var response = client.Indices.Create(index,
-                    s => s.Settings(settings => settings
-                        .Setting("max_ngram_diff", 7)
-                        .Analysis(analysis => analysis
-                            .TokenFilters(tf => tf
-                                .NGram("my-ngram-filter", ng => ng
-                                    .MinGram(3)
-                                    .MaxGram(10)))
-                            .Analyzers(analyzer => analyzer
-                                .Custom("my-ngram-analyzer", custom => custom
-                                    .Tokenizer("standard")
-                                    .Filters("lowercase", "my-ngram-filter")))))
-                            .Map<Person>(m => m
-                                .Properties(pr => pr
-                                        .Text(t => t
-                                            .Name(n => n.About)
-                                            .Fields(f => f
-                                                .Text(ng => ng
-                                                    .Name("ngram")
-                                                    .Analyzer("my-ngram-analyzer"))))))); */
         }
 
 
-private ITypeMapping CreateMapping(TypeMappingDescriptor<Person> mappingDescriptor)
+        private ITypeMapping CreateMapping(TypeMappingDescriptor<Person> mappingDescriptor)
         {
             return mappingDescriptor
-                .Properties(pr => pr.AddAboutFieldMapping());
+                .Properties(pr => pr
+                    .AddNameFieldMapping().AddAboutFieldMapping().AddAgeFieldMapping()
+                        .AddEyeColorFieldMapping().AddGenderFieldMapping().AddLocationFieldMapping()
+                            .AddPhoneFieldMapping().AddAddressFieldMapping().AddCompanyFieldMapping()
+                                .AddDateFieldMapping()
+                                      );
         }
         private IPromise<IIndexSettings> CreateSettings(IndexSettingsDescriptor settingsDescriptor)
         {

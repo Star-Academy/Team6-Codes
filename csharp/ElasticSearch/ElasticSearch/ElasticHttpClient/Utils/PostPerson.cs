@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using ElasticHttpClient.Model;
 
 namespace ElasticHttpClient.Utils
@@ -15,10 +17,9 @@ namespace ElasticHttpClient.Utils
         public PostPerson()
         {
             client = new HttpClient();
-
         }
 
-        public async void MakeIndex(string index)
+        public async Task MakeIndex(string index)
         {
             this.index = index;
             var address = BaseAddress + index + "/";
@@ -41,12 +42,14 @@ namespace ElasticHttpClient.Utils
                 Console.WriteLine(e.StackTrace);
             }
         }
-        public async void RequestPostPeople(List<Person> persons)
+        public async Task RequestPostPeople(List<Person> people)
         {
+
             var address = BaseAddress + index + "/_doc";
-            foreach (var person in persons)
+            foreach (var person in people)
             {
-                var content = JsonContent.Create<Person>(person);
+                var jsonPerson = JsonSerializer.Serialize(person);
+                var content = new StringContent(jsonPerson, Encoding.UTF8, "application/json");
                 try
                 {
                     HttpResponseMessage response = await client.PostAsync(BaseAddress, content);
