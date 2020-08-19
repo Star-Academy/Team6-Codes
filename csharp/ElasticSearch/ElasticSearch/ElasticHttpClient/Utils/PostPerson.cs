@@ -46,14 +46,14 @@ namespace ElasticHttpClient.Utils
             var address = BaseAddress + index + "/_doc";
             foreach (var person in persons)
             {
-                Console.WriteLine(person.Name);
                 var content = JsonContent.Create<Person>(person);
                 try
                 {
                     HttpResponseMessage response = await client.PostAsync(BaseAddress, content);
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(responseBody);
                     response.EnsureSuccessStatusCode();
+                    Console.WriteLine(person.About);
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(responseBody.Length);
                 }
                 catch (HttpRequestException e)
                 {

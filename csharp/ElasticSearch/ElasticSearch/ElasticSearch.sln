@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticHttpClient", "ElasticHttpClient\ElasticHttpClient.csproj", "{7CDD6D04-C927-43EF-A393-C724DC6ACCB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticNest", "ElasticNest\ElasticNest.csproj", "{F895CF21-D597-4858-B775-B106D0515074}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{7CDD6D04-C927-43EF-A393-C724DC6ACCB4}.Release|x64.Build.0 = Release|Any CPU
 		{7CDD6D04-C927-43EF-A393-C724DC6ACCB4}.Release|x86.ActiveCfg = Release|Any CPU
 		{7CDD6D04-C927-43EF-A393-C724DC6ACCB4}.Release|x86.Build.0 = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|x64.Build.0 = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Debug|x86.Build.0 = Debug|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|x64.ActiveCfg = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|x64.Build.0 = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|x86.ActiveCfg = Release|Any CPU
+		{F895CF21-D597-4858-B775-B106D0515074}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
