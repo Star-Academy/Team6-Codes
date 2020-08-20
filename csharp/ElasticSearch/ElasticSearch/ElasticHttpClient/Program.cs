@@ -10,8 +10,10 @@ namespace ElasticHttpClient
         {
             var readPerson = new ReadPersonFromFile("/home/mohammadhosein/Desktop/Nest/csharp/ElasticSearch/ElasticSearch/ElasticHttpClient/Data/files.json");
             var post = new PostPerson();
-            // post.MakeIndex("http_client");
-            await post.RequestPostPeople(readPerson.ReadPerson());
+            var tt = Task.Run(() => post.MakeIndex("http_client"));
+            tt.Wait();
+            var t = Task.Run(() => post.RequestPostPeople(readPerson.ReadPerson()));
+            t.Wait();
         }
     }
 }

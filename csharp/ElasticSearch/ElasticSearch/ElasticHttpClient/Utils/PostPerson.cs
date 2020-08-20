@@ -26,13 +26,11 @@ namespace ElasticHttpClient.Utils
             Console.WriteLine(address);
             try
             {
-                HttpResponseMessage response = await client.PutAsync(address, null);
+                var response = await client.PutAsync(address, null);
                 Console.WriteLine(response.Content);
-                // response.EnsureSuccessStatusCode();
-
+                response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(responseBody);
-
             }
             catch (HttpRequestException e)
             {
@@ -44,19 +42,16 @@ namespace ElasticHttpClient.Utils
         }
         public async Task RequestPostPeople(List<Person> people)
         {
-
             var address = BaseAddress + index + "/_doc";
+            var uri = new Uri(address);
             foreach (var person in people)
             {
-                var jsonPerson = JsonSerializer.Serialize(person);
-                var content = new StringContent(jsonPerson, Encoding.UTF8, "application/json");
+                var content = JsonContent.Create<Person>(person);
                 try
                 {
-                    HttpResponseMessage response = await client.PostAsync(BaseAddress, content);
+                    HttpResponseMessage response = await client.PostAsync(uri, content);
                     response.EnsureSuccessStatusCode();
-                    Console.WriteLine(person.About);
                     var responseBody = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(responseBody.Length);
                 }
                 catch (HttpRequestException e)
                 {
