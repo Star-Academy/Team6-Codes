@@ -28,8 +28,9 @@ namespace ElasticNest.Controller
         public static PropertiesDescriptor<Person> AddAgeFieldMapping(this PropertiesDescriptor<Person> prpertiesDescriptor)
         {
             return prpertiesDescriptor
-                .IntegerRange(t => t
-                    .Name(n => n.Age));
+                .Number(t => t
+                    .Name(n => n.Age)
+                    .Type(NumberType.Integer));
         }
         public static PropertiesDescriptor<Person> AddEyeColorFieldMapping(this PropertiesDescriptor<Person> prpertiesDescriptor)
         {
@@ -107,7 +108,7 @@ namespace ElasticNest.Controller
         {
             return prpertiesDescriptor
                 .Date(t => t
-                    .Name(n => n.RegistrationDate).Format("yyyy/MM/dd HH:mm:ss"));
+                    .Name(n => n.RegistrationDate).Format("yyyy-MM-ddTHH:mm:ss"));
         }
 
     }

@@ -22,7 +22,6 @@ namespace ElasticNest.Utils
             var bulkDescriptor = new BulkDescriptor();
             foreach (var doc in docs)
             {
-                Console.WriteLine(doc);
                 bulkDescriptor.Index<T>(x => x
                     .Index(index)
                     .Document(doc)
