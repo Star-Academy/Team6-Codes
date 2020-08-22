@@ -2,20 +2,41 @@ using GoogleApp.Models;
 using System.Collections.Generic;
 using GoogleApp.Controller.ElasticController;
 using GoogleApp.Controller.Repository;
+using GoogleApp.View;
+using GoogleApp.Controller.Query;
+
 namespace GoogleApp.Controller
 {
     public class Manager
     {
         private string index = "google-docs";
-        private string folderPath { get; set; }
-        public void manage()
+
+        private readonly IInputReader inputReader;
+        private readonly IOutputWriter outputWriter;
+
+        public HashSet<Document> result { get; set; }
+        private string folderPath = "/home/mohammadhosein/Desktop/GoogleElasticsearch/csharp/ElasticSearch/GoogleElasticSearch/GoogleApp/Data";
+        
+        public Manager(IInputReader inputReader, IOutputWriter iOutputWriter)
         {
-            var postDocument = new PostDoc<Document>(index);
+            this.inputReader = inputReader;
+            this.outputWriter = iOutputWriter;
+        }
+        
+        
+        public void Run()
+        {
             var client = ElasticClientFactory.GetElasticClient();
             var customIndex = new CustomIndex();
             customIndex.CreateIndex(index);
-            var bulk = postDocument.Post(CreateDoc());
+            List<Document> docs = CreateDoc();
+            var postDocument = new PostDoc<Document>(index);
+            var bulk = postDocument.Post(docs);
             client.Bulk(bulk);
+            ElasticSearch elasticSearch = new ElasticSearch(index);
+            var query = new QueryManager(inputReader.GetQuery(), elasticSearch);
+            result = query.QueryProcess();
+            outputWriter.ShowOutput(result);
         }
         public List<Document> CreateDoc()
         {

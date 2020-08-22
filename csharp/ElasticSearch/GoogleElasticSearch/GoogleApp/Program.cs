@@ -1,4 +1,6 @@
 ﻿using System;
+using GoogleApp.Controller;
+using GoogleApp.View;
 
 namespace GoogleApp
 {
@@ -6,7 +8,8 @@ namespace GoogleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Manager m = new Manager(new ConsoleInputReader() , new ConsoleOutputWriter());
+            m.Run();
         }
     }
 }
