@@ -28,7 +28,7 @@ namespace ElasticNest
             Console.WriteLine(q.IsValid);
             Console.WriteLine(q.ServerError);
             Console.WriteLine(q.Aggregations.Average("avg").Value);
-
         }
+
     }
 }
