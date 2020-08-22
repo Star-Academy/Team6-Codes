@@ -108,7 +108,7 @@ namespace ElasticNest.Controller
         {
             return prpertiesDescriptor
                 .Date(t => t
-                    .Name(n => n.RegistrationDate).Format("yyyy-MM-ddTHH:mm:ss"));
+                    .Name("registration_date").Format("yyyy/MM/dd HH:mm:ss"));
         }
 
     }

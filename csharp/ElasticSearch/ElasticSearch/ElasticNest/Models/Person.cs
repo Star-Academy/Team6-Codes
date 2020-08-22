@@ -33,8 +33,8 @@ namespace ElasticNest.Models
         [JsonPropertyName("about")]
         public string About { get; set; }
 
-        [JsonPropertyName("registration_date")]
-        public DateTime RegistrationDate { get; set; }
+        [JsonPropertyName("registeration_date")]
+        public string RegistrationDate { get; set; }
 
         [Ignore]
         [JsonPropertyName("latitude")]
