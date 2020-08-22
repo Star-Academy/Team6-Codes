@@ -13,7 +13,7 @@ namespace ElasticNest
         static void Main(string[] args)
         {
             // var jsonReader = new JsonReader<List<Person>>("Data/files.json");
-            // var postDocument = new PostDocument<Person>(index);
+            var postDocument = new PostDocument<Person>(index);
             // var client = ElasticClientFactory.GetElasticClient();
             // var customIndex = new CustomIndex(client);
             // customIndex.CreateIndex(index);
