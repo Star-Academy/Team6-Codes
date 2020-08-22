@@ -15,7 +15,7 @@ namespace GoogleApp.Controller
         private readonly IOutputWriter outputWriter;
 
         public HashSet<Document> result { get; set; }
-        private string folderPath = "/home/mohammadhosein/Desktop/GoogleElasticsearch/csharp/ElasticSearch/GoogleElasticSearch/GoogleApp/Data";
+        private string folderPath = "Data";
         
         public Manager(IInputReader inputReader, IOutputWriter iOutputWriter)
         {

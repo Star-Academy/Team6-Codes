@@ -30,8 +30,8 @@ namespace GoogleApp.Models
 
             ISearchResponse<Document> response = client.Search<Document>(s => s
                 .Index(index)
+                .Size(1000)
                 .Query(q => matchQuery));
-            
             
             foreach(var doc in response.Documents)
             {

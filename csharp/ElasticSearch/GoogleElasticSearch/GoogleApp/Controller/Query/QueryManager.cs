@@ -27,7 +27,7 @@ namespace GoogleApp.Controller.Query
             var result = new HashSet<Document>();
 
             result.UnionWith(AndQuery.ProcessQuery(invertedIndex));
-
+            
             result.UnionWith(OrQuery.ProcessQuery(invertedIndex));
 
             result.ExceptWith(DeleteQuery.ProcessQuery(invertedIndex));
