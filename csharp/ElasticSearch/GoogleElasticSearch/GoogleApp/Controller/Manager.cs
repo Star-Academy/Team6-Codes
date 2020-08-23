@@ -49,8 +49,9 @@ namespace GoogleApp.Controller
 
         public void PostDocument(ElasticClient client)
         {
-            var response = client.Indices.Exists(index);
-            if (response.Exists)
+            var existsIndicesResponse = client.Indices.Exists(index);
+            new ResponseValidator<ExistsResponse>(existsIndicesResponse);
+            if (existsIndicesResponse.Exists)
             {
                 return;
             }
@@ -59,7 +60,8 @@ namespace GoogleApp.Controller
             List<Document> docs = CreateDoc();
             var postDocument = new PostDoc<Document>(index);
             var bulk = postDocument.Post(docs);
-            client.Bulk(bulk);
+            var bulkResponse = client.Bulk(bulk);
+            new ResponseValidator<BulkResponse>(bulkResponse);
         }
     }
 }

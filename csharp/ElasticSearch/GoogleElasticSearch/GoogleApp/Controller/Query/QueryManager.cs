@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Elasticsearch.Net;
 using GoogleApp.Controller.ElasticController;
 using GoogleApp.Models;
 using Nest;
@@ -32,7 +30,7 @@ namespace GoogleApp.Controller.Query
 
             resultQuery = resultQuery && AndQuery.ProcessQuery(invertedIndex);
 
-            resultQuery = resultQuery && OrQuery.ProcessQuery(invertedIndex);
+            resultQuery = resultQuery || OrQuery.ProcessQuery(invertedIndex);
 
             resultQuery = resultQuery && DeleteQuery.ProcessQuery(invertedIndex);
 
@@ -43,6 +41,7 @@ namespace GoogleApp.Controller.Query
                 .Index(index)
                 .Size(1000)
                 .Query(q => resultQuery));
+            new ResponseValidator<ISearchResponse<Document>>(response);
             return response.Documents;
         }
     }

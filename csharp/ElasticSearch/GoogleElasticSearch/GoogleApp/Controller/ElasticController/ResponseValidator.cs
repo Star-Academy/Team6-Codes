@@ -1,23 +1,25 @@
+using System;
 using Elasticsearch.Net;
 namespace GoogleApp.Controller.ElasticController
 {
-    public class ResponseValidator<T, R> where T : ElasticsearchResponseBase
+    public class ResponseValidator<T> where T : IElasticsearchResponse
     {
         private readonly T response;
         public ResponseValidator(T response)
         {
             this.response = response;
+            if(!isValid())
+                Console.WriteLine(getResponseError());
         }
-
 
         public bool isValid()
         {
-            return response.Success;
+            return response.ApiCall.Success;
         }
 
         public string getResponseError()
         {
-            return response.DebugInformation;
+            return response.ApiCall.DebugInformation;
         }
     }
 }
