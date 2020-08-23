@@ -26,9 +26,6 @@ namespace GoogleApp.Models
                 Query = token,
                 Fuzziness = Fuzziness.Auto
             };
-
-            
-
             return matchQuery;
         }
     }

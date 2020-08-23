@@ -4,6 +4,8 @@ using GoogleApp.Controller.ElasticController;
 using GoogleApp.Controller.Repository;
 using GoogleApp.View;
 using GoogleApp.Controller.Query;
+using Elasticsearch.Net;
+using Nest;
 
 namespace GoogleApp.Controller
 {
@@ -14,25 +16,20 @@ namespace GoogleApp.Controller
         private readonly IInputReader inputReader;
         private readonly IOutputWriter outputWriter;
 
-        public HashSet<Document> result { get; set; }
+        public IEnumerable<Document> result { get; set; }
         private string folderPath = "Data";
-        
+
         public Manager(IInputReader inputReader, IOutputWriter iOutputWriter)
         {
             this.inputReader = inputReader;
             this.outputWriter = iOutputWriter;
         }
-        
-        
+
+
         public void Run()
         {
-            /* var client = ElasticClientFactory.GetElasticClient();
-            var customIndex = new CustomIndex();
-            customIndex.CreateIndex(index);
-            List<Document> docs = CreateDoc();
-            var postDocument = new PostDoc<Document>(index);
-            var bulk = postDocument.Post(docs);
-            client.Bulk(bulk); */
+            var client = ElasticClientFactory.GetElasticClient();
+            PostDocument(client);
             ElasticSearch elasticSearch = new ElasticSearch(index);
             var query = new QueryManager(inputReader.GetQuery(), elasticSearch);
             result = query.QueryProcess(index);
@@ -48,6 +45,21 @@ namespace GoogleApp.Controller
                 doc.Content = reader.GetContent();
             }
             return documents;
+        }
+
+        public void PostDocument(ElasticClient client)
+        {
+            var response = client.Indices.Exists(index);
+            if (response.Exists)
+            {
+                return;
+            }
+            var customIndex = new CustomIndex();
+            customIndex.CreateIndex(index);
+            List<Document> docs = CreateDoc();
+            var postDocument = new PostDoc<Document>(index);
+            var bulk = postDocument.Post(docs);
+            client.Bulk(bulk);
         }
     }
 }

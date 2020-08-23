@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Elasticsearch.Net;
 using GoogleApp.Controller.ElasticController;
 using GoogleApp.Models;
 using Nest;
@@ -24,30 +26,24 @@ namespace GoogleApp.Controller.Query
             this.DeleteQuery = new DeleteQuery(query);
         }
 
-        public HashSet<Document> QueryProcess(string index)
+        public IEnumerable<Document> QueryProcess(string index)
         {
             var resultQuery = new QueryContainer();
 
             resultQuery = resultQuery && AndQuery.ProcessQuery(invertedIndex);
-            
+
             resultQuery = resultQuery && OrQuery.ProcessQuery(invertedIndex);
 
-            resultQuery =  resultQuery && DeleteQuery.ProcessQuery(invertedIndex);
+            resultQuery = resultQuery && DeleteQuery.ProcessQuery(invertedIndex);
 
             HashSet<Document> docs = new HashSet<Document>();
 
             ElasticClient client = ElasticClientFactory.GetElasticClient();
-
             ISearchResponse<Document> response = client.Search<Document>(s => s
                 .Index(index)
                 .Size(1000)
                 .Query(q => resultQuery));
-
-            foreach(Document doc in response.Documents){
-                Document document = new Document(doc.Id , doc.Content);
-                docs.Add(document);
-            }
-            return docs;
+            return response.Documents;
         }
     }
 }

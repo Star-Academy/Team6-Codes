@@ -10,15 +10,18 @@ namespace GoogleApp.Controller.Query
 
         public AndQuery(string query) : base(query)
         {
-            this.QueryRegex = new Regex(@"([^\+\-\w]|^)(\w+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+            this.QueryRegex = new Regex(@"(^[\+\-\w*]|^)(\w+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
             this.QueryParser(query, 2);
         }
 
         public override QueryContainer ProcessQuery(IInvertedIndex invertedIndex)
         {
-            var result = new HashSet<Document>();
-            QueryContainer andQuery = invertedIndex.GetDocuments(Queries[0]);
-            
+            var andQuery = new QueryContainer();
+            if (Queries.Count != 0)
+            {
+                andQuery = invertedIndex.GetDocuments(Queries[0]);
+            }
             for (int i = 1; i < Queries.Count; i++)
             {
                 andQuery = andQuery && invertedIndex.GetDocuments(Queries[i]);
