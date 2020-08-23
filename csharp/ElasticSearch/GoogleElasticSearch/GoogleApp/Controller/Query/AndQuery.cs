@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using GoogleApp.Models;
+using Nest;
 
 namespace GoogleApp.Controller.Query
 {
@@ -13,15 +14,16 @@ namespace GoogleApp.Controller.Query
             this.QueryParser(query, 2);
         }
 
-        public override HashSet<Document> ProcessQuery(IInvertedIndex invertedIndex)
+        public override QueryContainer ProcessQuery(IInvertedIndex invertedIndex)
         {
             var result = new HashSet<Document>();
-            result.UnionWith(invertedIndex.GetDocuments(Queries[0]));
+            QueryContainer andQuery = invertedIndex.GetDocuments(Queries[0]);
+            
             for (int i = 1; i < Queries.Count; i++)
             {
-                result.IntersectWith(invertedIndex.GetDocuments(Queries[i]));
+                andQuery = andQuery && invertedIndex.GetDocuments(Queries[i]);
             }
-            return result;
+            return andQuery;
         }
     }
 }

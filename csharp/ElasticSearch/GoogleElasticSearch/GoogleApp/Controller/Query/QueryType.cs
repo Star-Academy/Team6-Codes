@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using GoogleApp.Models;
+using Nest;
 
 namespace GoogleApp.Controller.Query
 {
@@ -13,7 +14,7 @@ namespace GoogleApp.Controller.Query
         {
             Queries = new List<string>();
         }
-        public abstract HashSet<Document> ProcessQuery(IInvertedIndex invertedIndex);
+        public abstract QueryContainer ProcessQuery(IInvertedIndex invertedIndex);
 
         public void QueryParser(string query, int group)
         {

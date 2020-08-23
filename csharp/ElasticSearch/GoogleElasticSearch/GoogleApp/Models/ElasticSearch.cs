@@ -17,9 +17,8 @@ namespace GoogleApp.Models
             this.index = index;
         }
 
-        public HashSet<Document> GetDocuments(string token)
+        public QueryContainer GetDocuments(string token)
         {
-            HashSet<Document> result = new HashSet<Document>();
             
             QueryContainer matchQuery = new MatchQuery
             {
@@ -28,18 +27,9 @@ namespace GoogleApp.Models
                 Fuzziness = Fuzziness.Auto
             };
 
-            ISearchResponse<Document> response = client.Search<Document>(s => s
-                .Index(index)
-                .Size(1000)
-                .Query(q => matchQuery));
             
-            foreach(var doc in response.Documents)
-            {
-                Document d = new Document(doc.Id,doc.Content);
-                result.Add(d);
-            }
 
-            return result;
+            return matchQuery;
         }
     }
 }

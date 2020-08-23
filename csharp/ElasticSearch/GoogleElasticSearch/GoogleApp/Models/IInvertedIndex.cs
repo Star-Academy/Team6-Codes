@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Nest;
 
 namespace GoogleApp.Models
 {
     public interface IInvertedIndex
     {
-        HashSet<Document> GetDocuments(string token);
+        QueryContainer GetDocuments(string token);
     }
 }

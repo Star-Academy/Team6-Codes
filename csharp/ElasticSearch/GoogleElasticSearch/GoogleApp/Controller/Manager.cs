@@ -26,16 +26,16 @@ namespace GoogleApp.Controller
         
         public void Run()
         {
-            var client = ElasticClientFactory.GetElasticClient();
+            /* var client = ElasticClientFactory.GetElasticClient();
             var customIndex = new CustomIndex();
             customIndex.CreateIndex(index);
             List<Document> docs = CreateDoc();
             var postDocument = new PostDoc<Document>(index);
             var bulk = postDocument.Post(docs);
-            client.Bulk(bulk);
+            client.Bulk(bulk); */
             ElasticSearch elasticSearch = new ElasticSearch(index);
             var query = new QueryManager(inputReader.GetQuery(), elasticSearch);
-            result = query.QueryProcess();
+            result = query.QueryProcess(index);
             outputWriter.ShowOutput(result);
         }
         public List<Document> CreateDoc()

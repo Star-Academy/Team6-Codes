@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using GoogleApp.Controller.ElasticController;
 using GoogleApp.Models;
+using Nest;
 
 namespace GoogleApp.Controller.Query
 {
@@ -22,17 +24,30 @@ namespace GoogleApp.Controller.Query
             this.DeleteQuery = new DeleteQuery(query);
         }
 
-        public HashSet<Document> QueryProcess()
+        public HashSet<Document> QueryProcess(string index)
         {
-            var result = new HashSet<Document>();
+            var resultQuery = new QueryContainer();
 
-            result.UnionWith(AndQuery.ProcessQuery(invertedIndex));
+            resultQuery = resultQuery && AndQuery.ProcessQuery(invertedIndex);
             
-            result.UnionWith(OrQuery.ProcessQuery(invertedIndex));
+            resultQuery = resultQuery && OrQuery.ProcessQuery(invertedIndex);
 
-            result.ExceptWith(DeleteQuery.ProcessQuery(invertedIndex));
+            resultQuery =  resultQuery && DeleteQuery.ProcessQuery(invertedIndex);
 
-            return result;
+            HashSet<Document> docs = new HashSet<Document>();
+
+            ElasticClient client = ElasticClientFactory.GetElasticClient();
+
+            ISearchResponse<Document> response = client.Search<Document>(s => s
+                .Index(index)
+                .Size(1000)
+                .Query(q => resultQuery));
+
+            foreach(Document doc in response.Documents){
+                Document document = new Document(doc.Id , doc.Content);
+                docs.Add(document);
+            }
+            return docs;
         }
     }
 }
