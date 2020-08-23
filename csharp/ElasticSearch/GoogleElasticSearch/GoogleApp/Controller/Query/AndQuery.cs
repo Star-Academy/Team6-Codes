@@ -20,11 +20,11 @@ namespace GoogleApp.Controller.Query
             var andQuery = new QueryContainer();
             if (Queries.Count != 0)
             {
-                andQuery = invertedIndex.GetDocuments(Queries[0]);
+                andQuery = invertedIndex.GetTokenQueryContainer(Queries[0]);
             }
             for (int i = 1; i < Queries.Count; i++)
             {
-                andQuery = andQuery && invertedIndex.GetDocuments(Queries[i]);
+                andQuery = andQuery && invertedIndex.GetTokenQueryContainer(Queries[i]);
             }
             return andQuery;
         }

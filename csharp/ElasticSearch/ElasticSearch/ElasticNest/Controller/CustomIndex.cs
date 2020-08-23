@@ -23,11 +23,16 @@ namespace ElasticNest.Controller
         {
             return mappingDescriptor
                 .Properties(pr => pr
-                    .AddNameFieldMapping().AddAboutFieldMapping().AddAgeFieldMapping()
-                        .AddEyeColorFieldMapping().AddGenderFieldMapping().AddLocationFieldMapping()
-                            .AddPhoneFieldMapping().AddAddressFieldMapping().AddCompanyFieldMapping()
-                                .AddDateFieldMapping()
-                                      );
+                    .AddNameFieldMapping()
+                    .AddAboutFieldMapping()
+                    .AddAgeFieldMapping()
+                    .AddEyeColorFieldMapping()
+                    .AddGenderFieldMapping()
+                    .AddLocationFieldMapping()
+                    .AddPhoneFieldMapping()
+                    .AddAddressFieldMapping()
+                    .AddCompanyFieldMapping()
+                    .AddDateFieldMapping());
         }
         private IPromise<IIndexSettings> CreateSettings(IndexSettingsDescriptor settingsDescriptor)
         {

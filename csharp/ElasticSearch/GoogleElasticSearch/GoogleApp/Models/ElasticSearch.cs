@@ -17,7 +17,7 @@ namespace GoogleApp.Models
             this.index = index;
         }
 
-        public QueryContainer GetDocuments(string token)
+        public QueryContainer GetTokenQueryContainer(string token)
         {
             
             QueryContainer matchQuery = new MatchQuery

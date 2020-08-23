@@ -14,6 +14,7 @@ namespace GoogleApp.Controller.Query
 
         public OrQuery OrQuery { get; }
         public DeleteQuery DeleteQuery { get; }
+        private readonly ElasticClient client = ElasticClientFactory.GetElasticClient();
 
         public QueryManager(string query, IInvertedIndex invertedIndex)
         {
@@ -28,15 +29,12 @@ namespace GoogleApp.Controller.Query
         {
             var resultQuery = new QueryContainer();
 
-            resultQuery = resultQuery && AndQuery.ProcessQuery(invertedIndex);
+            resultQuery &= AndQuery.ProcessQuery(invertedIndex);
 
-            resultQuery = resultQuery || OrQuery.ProcessQuery(invertedIndex);
+            resultQuery |= OrQuery.ProcessQuery(invertedIndex);
 
-            resultQuery = resultQuery && DeleteQuery.ProcessQuery(invertedIndex);
+            resultQuery &= DeleteQuery.ProcessQuery(invertedIndex);
 
-            HashSet<Document> docs = new HashSet<Document>();
-
-            ElasticClient client = ElasticClientFactory.GetElasticClient();
             ISearchResponse<Document> response = client.Search<Document>(s => s
                 .Index(index)
                 .Size(1000)

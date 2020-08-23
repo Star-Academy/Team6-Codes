@@ -4,16 +4,16 @@ using System.Text.Json;
 using ElasticHttpClient.Model;
 namespace ElasticHttpClient.Utils
 {
-    public class ReadPersonFromFile : ReadPerson
+    public class ReadPeopleFromFile : IPeopleReader
     {
         private readonly string filePath;
 
-        public ReadPersonFromFile(string filePath)
+        public ReadPeopleFromFile(string filePath)
         {
             this.filePath = filePath;
         }
 
-        public List<Person> ReadPerson()
+        public List<Person> ReadPeople()
         {
             var content = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<List<Person>>(content);

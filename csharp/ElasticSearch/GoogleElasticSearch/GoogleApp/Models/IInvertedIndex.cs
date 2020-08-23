@@ -5,6 +5,6 @@ namespace GoogleApp.Models
 {
     public interface IInvertedIndex
     {
-        QueryContainer GetDocuments(string token);
+        QueryContainer GetTokenQueryContainer(string token);
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace ElasticHttpClient.Utils
 {
-    public interface ReadPerson
+    public interface IPeopleReader
     {
-        List<Person> ReadPerson();
+        List<Person> ReadPeople();
     }
 }

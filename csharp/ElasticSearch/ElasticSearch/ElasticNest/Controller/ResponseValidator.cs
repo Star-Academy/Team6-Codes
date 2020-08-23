@@ -2,7 +2,7 @@ using Elasticsearch.Net;
 
 namespace ElasticNest.Controller
 {
-    public class ResponseValidator<T, R> where T : ElasticsearchResponseBase
+    public class ResponseValidator<T> where T : IElasticsearchResponse
     {
         private readonly T response;
         public ResponseValidator(T response)
@@ -13,12 +13,12 @@ namespace ElasticNest.Controller
 
         public bool isValid()
         {
-            return response.Success;
+            return response.ApiCall.Success;
         }
 
         public string getResponseError()
         {
-            return response.DebugInformation;
+            return response.ApiCall.DebugInformation;
         }
     }
 }

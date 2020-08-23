@@ -7,11 +7,11 @@ namespace ElasticHttpClient
     {
         static void Main(string[] args)
         {
-            var readPerson = new ReadPersonFromFile("Data/files.json");
+            var readPerson = new ReadPeopleFromFile("Data/files.json");
             var post = new PostPerson();
             var tt = Task.Run(() => post.MakeIndex("http_client"));
             tt.Wait();
-            var t = Task.Run(() => post.RequestPostPeople(readPerson.ReadPerson()));
+            var t = Task.Run(() => post.RequestPostPeople(readPerson.ReadPeople()));
             t.Wait();
         }
     }

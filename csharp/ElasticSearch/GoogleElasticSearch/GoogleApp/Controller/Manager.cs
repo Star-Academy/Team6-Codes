@@ -61,12 +61,12 @@ namespace GoogleApp.Controller
             customIndex.CreateIndex(index);
             return false;
         }
-        public void PostDocument(string folderPath, bool IndexExistance, bool IsExistanceImportant)
+        public void PostDocument(string folderPath, bool IndexExistence, bool IsExistenceImportant)
         {
             // if we want to post initial docs we pass isExistanceImportant as true !
             // if we add new documents we pass false
 
-            if (IsExistanceImportant && !IndexExistance)
+            if (IsExistenceImportant && IndexExistence)
                 return;
             List<Document> docs = CreateDoc();
             var postDocument = new PostDoc<Document>(index);

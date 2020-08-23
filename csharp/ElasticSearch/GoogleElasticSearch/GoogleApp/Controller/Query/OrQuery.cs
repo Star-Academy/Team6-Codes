@@ -17,7 +17,7 @@ namespace GoogleApp.Controller.Query
         {
             var orQuery = new QueryContainer();
             foreach (var query in this.Queries){
-                orQuery = orQuery || invertedIndex.GetDocuments(query);
+                orQuery = orQuery || invertedIndex.GetTokenQueryContainer(query);
             }
             return orQuery;
         }

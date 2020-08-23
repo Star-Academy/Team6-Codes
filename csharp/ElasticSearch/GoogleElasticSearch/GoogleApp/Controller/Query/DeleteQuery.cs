@@ -18,7 +18,7 @@ namespace GoogleApp.Controller.Query
             var delQuery = new QueryContainer();
             foreach (var query in this.Queries)
             {
-                delQuery = delQuery || invertedIndex.GetDocuments(query);
+                delQuery = delQuery || invertedIndex.GetTokenQueryContainer(query);
             }
             return !delQuery;
         }
