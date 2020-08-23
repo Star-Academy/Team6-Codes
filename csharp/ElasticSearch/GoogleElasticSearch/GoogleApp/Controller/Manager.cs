@@ -15,7 +15,7 @@ namespace GoogleApp.Controller
 
         private readonly IInputReader inputReader;
         private readonly IOutputWriter outputWriter;
-
+        private readonly ElasticClient client;
         public IEnumerable<Document> result { get; set; }
         private string folderPath = "Data";
 
@@ -23,13 +23,15 @@ namespace GoogleApp.Controller
         {
             this.inputReader = inputReader;
             this.outputWriter = iOutputWriter;
+            client = ElasticClientFactory.GetElasticClient();
         }
 
 
         public void Run()
         {
-            var client = ElasticClientFactory.GetElasticClient();
-            PostDocument(client);
+
+            var isIndexed = CreateIndex(index);
+            PostDocument(folderPath, isIndexed, true);
             ElasticSearch elasticSearch = new ElasticSearch(index);
             var query = new QueryManager(inputReader.GetQuery(), elasticSearch);
             result = query.QueryProcess(index);
@@ -47,16 +49,25 @@ namespace GoogleApp.Controller
             return documents;
         }
 
-        public void PostDocument(ElasticClient client)
+        public bool CreateIndex(string index)
         {
             var existsIndicesResponse = client.Indices.Exists(index);
             new ResponseValidator<ExistsResponse>(existsIndicesResponse);
             if (existsIndicesResponse.Exists)
             {
-                return;
+                return true;
             }
             var customIndex = new CustomIndex();
             customIndex.CreateIndex(index);
+            return false;
+        }
+        public void PostDocument(string folderPath, bool IndexExistance, bool IsExistanceImportant)
+        {
+            // if we want to post initial docs we pass isExistanceImportant as true !
+            // if we add new documents we pass false
+
+            if (IsExistanceImportant && !IndexExistance)
+                return;
             List<Document> docs = CreateDoc();
             var postDocument = new PostDoc<Document>(index);
             var bulk = postDocument.Post(docs);
