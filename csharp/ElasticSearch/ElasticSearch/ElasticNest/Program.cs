@@ -12,13 +12,16 @@ namespace ElasticNest
         private readonly static string index = "nest-search";
         static void Main(string[] args)
         {
-            // var jsonReader = new JsonReader<List<Person>>("Data/files.json");
+            var jsonReader = new JsonReader<List<Person>>("Data/files.json");
             var postDocument = new PostDocument<Person>(index);
-            // var client = ElasticClientFactory.GetElasticClient();
-            // var customIndex = new CustomIndex(client);
-            // customIndex.CreateIndex(index);
-            // var bulk = postDocument.Post(jsonReader.ReadPerson());
-            // client.Bulk(bulk);
+            var client = ElasticClientFactory.GetElasticClient();
+            if (!client.Indices.Exists(index).Exists)
+            {
+                var customIndex = new CustomIndex(client);
+                customIndex.CreateIndex(index);
+                var bulk = postDocument.Post(jsonReader.ReadPerson());
+                client.Bulk(bulk);
+            }
             CheckQuery();
         }
 
