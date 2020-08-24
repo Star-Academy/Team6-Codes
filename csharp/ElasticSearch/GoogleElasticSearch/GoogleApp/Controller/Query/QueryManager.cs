@@ -10,10 +10,10 @@ namespace GoogleApp.Controller.Query
         private IInvertedIndex invertedIndex;
         private string query;
 
-        public AndQuery AndQuery { get; }
+        public QueryType AndQuery { get; }
 
-        public OrQuery OrQuery { get; }
-        public DeleteQuery DeleteQuery { get; }
+        public QueryType OrQuery { get; }
+        public QueryType DeleteQuery { get; }
         private readonly ElasticClient client = ElasticClientFactory.GetElasticClient();
 
         public QueryManager(string query, IInvertedIndex invertedIndex)
