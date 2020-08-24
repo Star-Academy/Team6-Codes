@@ -10,7 +10,7 @@ namespace GoogleApp.View
         {
             foreach (var doc in docs)
             {
-                Console.WriteLine(doc.Id);
+                Console.WriteLine(doc.ID);
             }
         }
     }

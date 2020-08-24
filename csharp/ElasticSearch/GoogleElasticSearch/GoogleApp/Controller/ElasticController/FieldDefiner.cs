@@ -19,7 +19,7 @@ namespace GoogleApp.Controller.ElasticController
         {
             // prpertiesDescriptor.
             return prpertiesDescriptor.Text(t => t
-                    .Name(n => n.Id)
+                    .Name(n => n.ID)
                     .Fields(f => f
                         .Text(ng => ng
                             .Name("ngram")

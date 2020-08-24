@@ -4,7 +4,7 @@ namespace GoogleApp.Models
 {
     public class Document
     {
-        public readonly string Id;
+        public readonly string ID;
 
         public string Content { get; set; }
 
@@ -15,11 +15,11 @@ namespace GoogleApp.Models
         public Document(string filePath)
         {
             this.FilePath = filePath;
-            Id = Path.GetFileName(filePath);
+            ID = Path.GetFileName(filePath);
         }
 
         public Document(string id , string content){
-            this.Id = id;
+            this.ID = id;
             this.Content = content;
             this.FilePath = id;
         }

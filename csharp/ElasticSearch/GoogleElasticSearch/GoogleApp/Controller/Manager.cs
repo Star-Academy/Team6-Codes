@@ -29,50 +29,15 @@ namespace GoogleApp.Controller
 
         public void Run()
         {
+            var import = new Importer(index);
 
-            var isIndexed = CreateIndex(index);
-            PostDocument(folderPath, isIndexed, true);
+            var isIndexed = import.CreateIndex();
+            import.PostDocument(folderPath, isIndexed, true);
             ElasticSearch elasticSearch = new ElasticSearch(index);
             var query = new QueryManager(inputReader.GetQuery(), elasticSearch);
             result = query.QueryProcess(index);
             outputWriter.ShowOutput(result);
         }
-        public List<Document> CreateDoc()
-        {
-            FolderReader folderReader = new FolderReader(folderPath);
-            List<Document> documents = folderReader.DocumentsOfFolder();
-            foreach (Document doc in documents)
-            {
-                var reader = new FileReader(doc);
-                doc.Content = reader.GetContent();
-            }
-            return documents;
-        }
 
-        public bool CreateIndex(string index)
-        {
-            var existsIndicesResponse = client.Indices.Exists(index);
-            new ResponseValidator<ExistsResponse>(existsIndicesResponse);
-            if (existsIndicesResponse.Exists)
-            {
-                return true;
-            }
-            var customIndex = new CustomIndex();
-            customIndex.CreateIndex(index);
-            return false;
-        }
-        public void PostDocument(string folderPath, bool IndexExistence, bool IsExistenceImportant)
-        {
-            // if we want to post initial docs we pass isExistanceImportant as true !
-            // if we add new documents we pass false
-
-            if (IsExistenceImportant && IndexExistence)
-                return;
-            List<Document> docs = CreateDoc();
-            var postDocument = new PostDoc<Document>(index);
-            var bulk = postDocument.Post(docs);
-            var bulkResponse = client.Bulk(bulk);
-            new ResponseValidator<BulkResponse>(bulkResponse);
-        }
     }
 }
