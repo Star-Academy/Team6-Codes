@@ -11,31 +11,22 @@ namespace GoogleApp.Controller.ElasticController
         public ResponseValidator(T response)
         {
             this.response = response;
-
         }
         public void Validate()
         {
-            try
-            {
-                ValidateServerError();
-                ValidateClientError();
-                ValidateApiError();
-            }
-            catch (ElasticException e)
-            {
-
-                Console.Error.WriteLine(e.Message);
-            }
+            ValidateServerError();
+            ValidateClientError();
+            ValidateApiError();
         }
 
-        public void ValidateServerError()
+        private void ValidateServerError()
         {
             var error = response.ServerError;
             if (error != null)
                 throw new ElasticServerException(error.ToString());
         }
 
-        public void ValidateClientError()
+        private void ValidateClientError()
         {
             var error = response.OriginalException;
             if (error != null)

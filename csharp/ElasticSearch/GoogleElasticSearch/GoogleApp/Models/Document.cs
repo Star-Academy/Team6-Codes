@@ -1,16 +1,17 @@
 using Nest;
 using System.IO;
+using System.Text.Json.Serialization;
+
 namespace GoogleApp.Models
 {
     public class Document
     {
-        public readonly string ID;
+        [PropertyName("id")]
+        public string ID { get; set; }
 
         public string Content { get; set; }
 
-
-        [Ignore]
-        public string FilePath { get; set; }
+        public readonly string FilePath;
 
         public Document(string filePath)
         {
@@ -18,7 +19,8 @@ namespace GoogleApp.Models
             ID = Path.GetFileName(filePath);
         }
 
-        public Document(string id , string content){
+        public Document(string id, string content)
+        {
             this.ID = id;
             this.Content = content;
             this.FilePath = id;

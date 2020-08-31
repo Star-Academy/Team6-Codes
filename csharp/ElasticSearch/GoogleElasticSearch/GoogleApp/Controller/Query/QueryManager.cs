@@ -39,7 +39,7 @@ namespace GoogleApp.Controller.Query
                 .Index(index)
                 .Size(1000)
                 .Query(q => resultQuery));
-            new ResponseValidator<ISearchResponse<Document>>(response);
+            new ResponseValidator<ISearchResponse<Document>>(response).Validate();
             return response.Documents;
         }
     }
