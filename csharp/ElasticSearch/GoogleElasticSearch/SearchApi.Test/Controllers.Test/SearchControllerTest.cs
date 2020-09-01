@@ -39,7 +39,7 @@ namespace SearchApi.Test.Controllers.Test
             var searchController = new SearchController(iSearchServiceMock.Object);
             var actual = searchController.SearchElastic(trueQuery);
 
-            Assert.IsType(typeof(OkObjectResult), actual);
+            Assert.IsType<OkObjectResult>(actual);
 
             var objectResult = (OkObjectResult)actual;
             Assert.Equal(objectResult.Value, expected);
@@ -50,7 +50,7 @@ namespace SearchApi.Test.Controllers.Test
         {
             var searchController = new SearchController(iSearchServiceMock.Object);
             var actual = searchController.SearchElastic(serverErrorQuery);
-            Assert.IsType(typeof(ObjectResult), actual);
+            Assert.IsType<ObjectResult>(actual);
             var objectResult = (ObjectResult)actual;
             Assert.Equal(serverErrorStatusCode, objectResult.StatusCode);
         }
@@ -60,7 +60,7 @@ namespace SearchApi.Test.Controllers.Test
         {
             var searchController = new SearchController(iSearchServiceMock.Object);
             var actual = searchController.SearchElastic(clientErrorQuery);
-            Assert.IsType(typeof(ObjectResult), actual);
+            Assert.IsType<ObjectResult>(actual);
             var objectResult = (ObjectResult)actual;
             Assert.Equal(clientErrorStatusCode, objectResult.StatusCode);
         }
@@ -70,7 +70,7 @@ namespace SearchApi.Test.Controllers.Test
         {
             var searchController = new SearchController(iSearchServiceMock.Object);
             var actual = searchController.SearchElastic(apiErrorQuery);
-            Assert.IsType(typeof(ObjectResult), actual);
+            Assert.IsType<ObjectResult>(actual);
             var objectResult = (ObjectResult)actual;
             Assert.Equal(apiErrorStatusCode, objectResult.StatusCode);
         }
