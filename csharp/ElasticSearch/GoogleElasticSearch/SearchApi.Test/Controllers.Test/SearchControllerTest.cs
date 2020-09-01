@@ -13,22 +13,31 @@ namespace SearchApi.Test.Controllers.Test
     {
 
 
-        Mock<ISearchService> iSearchServiceMock;
-        List<Document> expected = new List<Document>() { new Document("1", "hello") };
+        private readonly Mock<ISearchService> iSearchServiceMock;
+        private readonly List<Document> expected = new List<Document>() { new Document("1", "hello") };
+
+        private readonly string trueQuery = "hello +world -mahdi";
+        private readonly string serverErrorQuery = "bye -mhm";
+        private readonly string clientErrorQuery = "reza";
+        private readonly string apiErrorQuery = "mohamadhosein";
+        private readonly int serverErrorStatusCode = 503;
+        private readonly int clientErrorStatusCode = 500;
+        private readonly int apiErrorStatusCode = 400;
         public SearchControllerTest()
         {
             iSearchServiceMock = new Mock<ISearchService>();
-            iSearchServiceMock.Setup(r => r.SearchQuery("hello +world -mahdi")).Returns(expected);
-            iSearchServiceMock.Setup(r => r.SearchQuery("bye -mhm")).Throws(new ElasticServerException(""));
-            iSearchServiceMock.Setup(r => r.SearchQuery("reza")).Throws(new ElasticApiException(""));
-            iSearchServiceMock.Setup(r => r.SearchQuery("mohamadhosein")).Throws(new ElasticClientException(""));
+            iSearchServiceMock.Setup(r => r.SearchQuery(trueQuery)).Returns(expected);
+            iSearchServiceMock.Setup(r => r.SearchQuery(serverErrorQuery)).Throws(new ElasticServerException(""));
+            iSearchServiceMock.Setup(r => r.SearchQuery(apiErrorQuery)).Throws(new ElasticApiException(""));
+            iSearchServiceMock.Setup(r => r.SearchQuery(clientErrorQuery)).Throws(new ElasticClientException(""));
         }
+
 
         [Fact]
         public void SearchElasticTest()
         {
             var searchController = new SearchController(iSearchServiceMock.Object);
-            var actual = searchController.SearchElastic("hello");
+            var actual = searchController.SearchElastic(trueQuery);
 
             Assert.IsType(typeof(OkObjectResult), actual);
 
@@ -40,10 +49,30 @@ namespace SearchApi.Test.Controllers.Test
         public void SearchElasticServerError()
         {
             var searchController = new SearchController(iSearchServiceMock.Object);
-            var actual = searchController.SearchElastic("bye -mhm");
-            Assert.IsType(typeof(StatusCodeResult), actual);
-            var objectResult = (StatusCodeResult)actual;
-            Assert.Equal(503, objectResult.StatusCode);
+            var actual = searchController.SearchElastic(serverErrorQuery);
+            Assert.IsType(typeof(ObjectResult), actual);
+            var objectResult = (ObjectResult)actual;
+            Assert.Equal(serverErrorStatusCode, objectResult.StatusCode);
+        }
+
+        [Fact]
+        public void SearchElasticClientError()
+        {
+            var searchController = new SearchController(iSearchServiceMock.Object);
+            var actual = searchController.SearchElastic(clientErrorQuery);
+            Assert.IsType(typeof(ObjectResult), actual);
+            var objectResult = (ObjectResult)actual;
+            Assert.Equal(clientErrorStatusCode, objectResult.StatusCode);
+        }
+
+        [Fact]
+        public void SearchElasticApiError()
+        {
+            var searchController = new SearchController(iSearchServiceMock.Object);
+            var actual = searchController.SearchElastic(apiErrorQuery);
+            Assert.IsType(typeof(ObjectResult), actual);
+            var objectResult = (ObjectResult)actual;
+            Assert.Equal(apiErrorStatusCode, objectResult.StatusCode);
         }
     }
 }

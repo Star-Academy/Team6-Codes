@@ -25,7 +25,7 @@ namespace SearchApi.Controllers
             }
             catch (ElasticException e)
             {
-                return StatusCodeResult(e.StatusCode, e.Message);
+                return StatusCode(e.StatusCode, e.Message);
             }
         }
     }
