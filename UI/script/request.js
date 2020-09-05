@@ -13,23 +13,27 @@ function search() {
 }
 
 function displayResult(docs) {
-    location.href = "./result.html";
-    document = "./result.html"
-    
     let template = '';
+    template += `
+        <div id="page-title">
+            <h2>Search Results</h2>
+        </div>`;
+
     docs.forEach(element => {
         template += `
-        <img id="doc-icon" src="./assets/-icon.png">
-        <h3 class="id">
-            ${element.id}
-        </h3>
-
+        <div class="result">
+        <div style="height: 50px;">
+            <img class="doc-image" src="./assets/image/doc-icon.png" >
+            <div class="id">
+                <p style="margin-left: 5px;">
+                    ${element.id}
+                </p>
+            </div>
+        </div>
         <p class="content">
             ${element.content}
-        </p>`
+        </p>
+    </div>`
     });
-    document.getElementsByClassName("result")[0].innerHTML = template;
-
-
-
+    document.getElementsByClassName("resultBody")[0].innerHTML = template;
 }
