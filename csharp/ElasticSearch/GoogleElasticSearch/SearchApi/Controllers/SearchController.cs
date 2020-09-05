@@ -16,7 +16,7 @@ namespace SearchApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchElastic(string query)
+        public IActionResult Search(string query)
         {
             try
             {
