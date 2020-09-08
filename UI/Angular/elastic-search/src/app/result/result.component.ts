@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import{ Document} from './models/Document';
-import{DocComponent} from './doc/doc.component';
-import { HomeComponent } from '../home/home.component';
 import { ElasticServiceService } from '../service/elastic-service.service';
 
 @Component({
@@ -20,6 +18,7 @@ export class ResultComponent implements OnInit {
 
 
   async ngOnInit() {
+    
     this.docs = await this.service.getDocs();
   }
 

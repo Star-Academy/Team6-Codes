@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ElasticServiceService } from '../service/elastic-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,15 @@ import { ElasticServiceService } from '../service/elastic-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  
-  
-  constructor() { }
+
+
+  constructor(private service: ElasticServiceService) { }
 
   ngOnInit(): void {
   }
 
-  public query(query:string){
-    ElasticServiceService.query = query;
+  public query(value: string) {
+    this.service.query = value;
   }
-
+  
 }
