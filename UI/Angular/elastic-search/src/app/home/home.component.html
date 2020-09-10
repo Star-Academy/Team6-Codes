@@ -1,0 +1,8 @@
+<h1 class="elastic-search-title">
+    <a routerLink="/home">Elastic Search</a>
+</h1>
+<div class="input">
+    <input class="input" #queryValue placeholder="Search" name="query">
+    <input class="button" type="image" src="../../assets/search.png" routerLink="/result"
+        (click)="query(queryValue.value)" />
+</div>
